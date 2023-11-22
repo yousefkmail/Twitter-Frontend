@@ -1,0 +1,26 @@
+.link {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  transition: all ease-in 0.2s;
+  border-radius: 9999px;
+  margin: 10px 5px;
+  padding: 5px 10px 5px 5px;
+  display: flex;
+  align-items: center;
+}
+.link:hover {
+  background-color: rgba(61, 59, 59, 0.484);
+  color: white;
+}
+
+.content {
+  margin-left: 5px;
+}
+
+@media (max-width: 1298px) {
+  .content {
+    margin-left: 5px;
+    display: none;
+  }
+}

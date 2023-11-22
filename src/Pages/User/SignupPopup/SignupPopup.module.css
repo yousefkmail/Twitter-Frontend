@@ -1,0 +1,32 @@
+.inner-container {
+  width: 600px;
+  height: 650px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border-radius: 15px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(91, 112, 131, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+}
+
+.input-field {
+  border: 1px solid rgba(255, 255, 255, 0.321);
+  width: min(100% - 2px, 600px);
+  height: 30px;
+  margin: 10px 0;
+  padding: 0;
+  outline: none;
+  padding-inline: 0;
+  padding-block: 0;
+  background-color: black;
+}

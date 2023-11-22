@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  background-color: rgb(32, 35, 39);
+  align-items: center;
+  border-radius: 9999px;
+  height: 45px;
+  padding-right: 20px;
+  flex-grow: 1;
+}
+
+.input-field {
+  height: 30px;
+  background: none;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+}

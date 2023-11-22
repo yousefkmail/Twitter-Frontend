@@ -1,0 +1,20 @@
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  width: 275px;
+  height: 100vh;
+  align-items: flex-start;
+  position: sticky;
+  top: 0;
+  transition: all ease-in-out 0.1s;
+}
+
+.link {
+  color: white;
+}
+
+@media (max-width: 1298px) {
+  .nav-container {
+    width: 88px;
+  }
+}

@@ -1,0 +1,24 @@
+.submit-button {
+  width: 80px;
+  border-radius: 9999px;
+  background-color: rgb(29, 155, 240);
+  font-weight: bold;
+  cursor: default;
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  color: white;
+}
+
+.text-input {
+  border: none;
+  height: auto;
+  display: block;
+  min-width: 80%;
+  background-color: black;
+  font-size: 24px;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+}
