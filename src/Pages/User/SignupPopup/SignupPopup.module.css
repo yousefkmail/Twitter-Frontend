@@ -7,6 +7,8 @@
   transform: translate(-50%, -50%);
   background-color: black;
   border-radius: 15px;
+  display: grid;
+  place-items: center;
 }
 
 .container {
@@ -23,7 +25,7 @@
   border: 1px solid rgba(255, 255, 255, 0.321);
   width: min(100% - 2px, 600px);
   height: 30px;
-  margin: 10px 0;
+  margin: 15px 0 0 0;
   padding: 0;
   outline: none;
   padding-inline: 0;

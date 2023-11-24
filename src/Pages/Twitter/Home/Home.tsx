@@ -8,12 +8,14 @@ import Searchbar from "../../../Components/Searchbar/Searchbar";
 import WhoToFollow from "../../../Components/Whotofollow/WhoToFollow";
 import { UseRecommendedAccountsContext } from "../../../Context/UseRecommendedAccountsContext";
 import { useApi } from "../../../Hooks/useApi";
+import { useAuthContext } from "../../../Hooks/useAuthContext";
 // import { io, Socket } from "socket.io-client";
 const Home = () => {
   const { RecAccounts } = UseRecommendedAccountsContext();
   const [tweets, setTweets] = useState([]);
   // const [socket, setSocket] = useState<Socket>();
   const { getTweets } = useApi();
+  const { userLoaded } = useAuthContext();
   const FetchTweets = async () => {
     const value = await getTweets();
     const json = await value.json();

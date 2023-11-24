@@ -5,7 +5,7 @@ import { useApi } from "./useApi";
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [Error, setError] = useState("");
-  const { setUser, setUserProfilePic } = useContext(authContext);
+  const { setUser } = useContext(authContext);
   const navigate = useNavigate();
   const { Login } = useApi();
   const login = async (email: any, password: any) => {
@@ -15,7 +15,6 @@ export const useLogin = () => {
     const json = await value.json();
     if (value.ok) {
       setUser(json.token);
-      setUserProfilePic(json.profilePic);
       localStorage.setItem("user", JSON.stringify(json.token));
       navigate("/home");
     } else {

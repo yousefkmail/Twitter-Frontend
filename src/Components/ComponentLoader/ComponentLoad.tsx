@@ -1,21 +1,30 @@
-import { ReactNode } from "react";
-import { Audio } from "react-loader-spinner";
+import { FunctionComponent, ReactNode } from "react";
+import { TailSpin } from "react-loader-spinner";
 interface ComponentLoaderProps {
   Component: ReactNode;
   Condition: boolean;
+  Loader?: FunctionComponent;
 }
 
-const ComponentLoader = ({ Component, Condition }: ComponentLoaderProps) => {
+const ComponentLoader = ({
+  Component,
+  Condition,
+  Loader,
+}: ComponentLoaderProps) => {
   return (
     <div>
       {Condition === false ? (
-        <Audio
-          height={100}
-          width={100}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          visible={true}
-        />
+        Loader ? (
+          <Loader />
+        ) : (
+          <TailSpin
+            height={100}
+            width={100}
+            color="#4fa94d"
+            ariaLabel="ball-triangle-loading"
+            visible={true}
+          />
+        )
       ) : (
         Component
       )}
