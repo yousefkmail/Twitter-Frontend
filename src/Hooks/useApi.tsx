@@ -1,10 +1,10 @@
 import { useAuthContext } from "./useAuthContext";
+import { user } from "../Types/user";
 export const useApi = (Url?: string) => {
-  const ApiUrl = Url ?? "https://charming-figolla-19a92e.netlify.app";
-  // const ApiUrl = Url ?? "http://localhost:5000";
-  const { user } = useAuthContext();
+  // const ApiUrl = Url ?? "https://charming-figolla-19a92e.netlify.app";
+  const ApiUrl = Url ?? "http://localhost:8888";
+  const { user, setCurrentUser, currentUser } = useAuthContext();
   const headers = { "Content-Type": "Application/json", token: user ?? "" };
-
   const getTweets = async () => {
     const result = await fetch(`${ApiUrl}/api/tweet/get`, {
       method: "GET",
@@ -56,14 +56,6 @@ export const useApi = (Url?: string) => {
     return await result.json();
   };
 
-  const GetCurrentUser = async () => {
-    const result = await fetch(`${ApiUrl}/api/user/current`, {
-      method: "GET",
-      headers: { token: user },
-    });
-    return await result.json();
-  };
-
   const GetTrends = async () => {
     const result = await fetch(`${ApiUrl}/api/trend/get`, {
       method: "GET",
@@ -88,16 +80,35 @@ export const useApi = (Url?: string) => {
     return result;
   };
 
+  const GetUser = async (user: string) => {
+    const result = await fetch(`${ApiUrl}/api/user/current`, {
+      method: "GET",
+      headers: { token: user, "Content-Type": "Application/json" },
+    });
+
+    return result;
+  };
+
+  const EditProfile = async (payload: any) => {
+    const result = await fetch(`${ApiUrl}/api/user/edit`, {
+      method: "POST",
+      body: payload,
+      headers: { token: user },
+    });
+    return result;
+  };
+
   return {
     getTweets,
     Login,
     PostTweet,
     GetFollowing,
     GetFollowers,
-    GetCurrentUser,
     signUp,
     GetTrends,
     FollowAccount,
     GetRecAccounts,
+    GetUser,
+    EditProfile,
   };
 };

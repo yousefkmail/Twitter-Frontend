@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
 import Back from "../../../Components/Buttons/Navlink/Back/Back";
 import Trends from "../../../Components/Trends/Trends";
 import WhoToFollow from "../../../Components/Whotofollow/WhoToFollow";
 import { UseRecommendedAccountsContext } from "../../../Context/UseRecommendedAccountsContext";
-import { useApi } from "../../../Hooks/useApi";
 import { Link, Outlet } from "react-router-dom";
+import { useAuthContext } from "../../../Hooks/useAuthContext";
+import { useState } from "react";
+import EditProfile from "../../../Components/EditProfile/EditProfile";
 
 const Profile = () => {
   const { RecAccounts } = UseRecommendedAccountsContext();
-  const { GetCurrentUser } = useApi();
-  const [currentuser, setCurrentUser] = useState<any>();
-  const FetchUser = async () => {
-    const result = await GetCurrentUser();
-    setCurrentUser(result.user);
+  const { currentUser } = useAuthContext();
+  const [IsEditingProfile, setIsEditingProfile] = useState<boolean>(false);
+
+  const OpenEditProfile = () => {
+    setIsEditingProfile(true);
   };
 
-  useEffect(() => {
-    FetchUser();
-  }, []);
-
+  const CloseEditProfile = () => {
+    setIsEditingProfile(false);
+  };
   return (
     <div style={{ width: "100%", display: "flex" }}>
       <div
@@ -31,19 +31,22 @@ const Profile = () => {
       >
         <div>
           <Back />
-          {currentuser?.name}
+          {currentUser?.name}
         </div>
         <div>
-          <Link to={"/profile/following"}>
-            {currentuser?.following.length + " Following"}
-          </Link>
-          <Link to={"/profile/followers"}>
-            {currentuser?.followers.length + "Followers"}
-          </Link>
+          <Link to={"/profile/following"}>{0 + " Following"}</Link>
+          <Link to={"/profile/followers"}>{0 + "Followers"}</Link>
         </div>
-        <div>
-          <img src={currentuser?.icon} alt="" />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <img
+            style={{ width: "100px", height: "100px" }}
+            src={currentUser?.icon}
+            alt="No image"
+          />
+          <button onClick={OpenEditProfile}>Edit profile</button>
         </div>
+        {IsEditingProfile && <EditProfile CloseWindow={CloseEditProfile} />}
+
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Link to={"/profile"} style={{ flexGrow: "1" }}>
             posts

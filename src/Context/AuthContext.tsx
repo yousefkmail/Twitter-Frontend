@@ -5,13 +5,14 @@ import {
   Dispatch,
   useEffect,
 } from "react";
-
+import { useApi } from "../Hooks/useApi";
+import { user } from "../Types/user";
 interface contextinterface {
   user: string;
   setUser: Dispatch<SetStateAction<string>>;
   userLoaded: boolean;
-  userProfilePic: string;
-  setUserProfilePic: Dispatch<SetStateAction<string>>;
+  currentUser: user;
+  setCurrentUser: Dispatch<SetStateAction<user>>;
 }
 
 export const authContext = createContext({} as contextinterface);
@@ -19,20 +20,34 @@ export const authContext = createContext({} as contextinterface);
 export const AuthContextProvider = ({ children }: any) => {
   const [userLoaded, setUserLoaded] = useState(false);
   const [user, setUser] = useState("");
-  const [userProfilePic, setUserProfilePic] = useState("");
+  const { GetUser } = useApi();
+  const [currentUser, setCurrentUser] = useState<user>({} as user);
   useEffect(() => {
     const localstorageitem = localStorage.getItem("user");
     if (localstorageitem) {
       const user = JSON.parse(localstorageitem);
       setUser(user);
-      console.log(user);
-      setUserLoaded(true);
+      FetchUser(user);
     }
+    setUserLoaded(true);
   }, []);
+
+  const FetchUser = async (user: string) => {
+    const result = await GetUser(user);
+    const data = await result.json();
+    console.log(data.user);
+    setCurrentUser(data.user);
+  };
 
   return (
     <authContext.Provider
-      value={{ user, setUser, userLoaded, userProfilePic, setUserProfilePic }}
+      value={{
+        user,
+        setUser,
+        userLoaded,
+        currentUser,
+        setCurrentUser,
+      }}
     >
       {children}
     </authContext.Provider>

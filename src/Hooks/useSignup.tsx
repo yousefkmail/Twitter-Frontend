@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../Context/AuthContext";
 import { useForm } from "react-hook-form";
@@ -18,10 +18,25 @@ interface SignupProps {
 
 export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [Error, setError] = useState("");
   const { setUser } = useContext(authContext);
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<SignupProps>();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm<SignupProps>();
+
+  useEffect(() => {
+    const watchsub = watch(() => {});
+
+    return () => {
+      watchsub.unsubscribe();
+    };
+  });
+  watch("password");
   const { signUp } = useApi();
   const OnSubmit = handleSubmit(
     async ({ email, name, password, Dob, Mob, Yob }) => {
@@ -40,11 +55,14 @@ export const useSignup = () => {
         localStorage.setItem("user", JSON.stringify(json.token));
         navigate("/home");
       } else {
-        setError(json.Error);
+        setError(json.Error.field, {
+          type: "custom",
+          message: json.Error.message,
+        });
       }
       setIsLoading(false);
     }
   );
 
-  return { isLoading, Error, register, OnSubmit };
+  return { isLoading, errors, register, OnSubmit };
 };
