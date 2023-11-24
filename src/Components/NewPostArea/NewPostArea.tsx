@@ -8,7 +8,7 @@ const NewPostArea = () => {
   const { ref, ...rest } = register("Images");
   const filesRef = useRef<HTMLInputElement | null>(null);
 
-  const { userProfilePic } = useAuthContext();
+  const { currentUser } = useAuthContext();
   return (
     <div
       style={{
@@ -21,7 +21,7 @@ const NewPostArea = () => {
       <div style={{ width: "60px" }}>
         <img
           style={{ width: "70%", objectFit: "cover" }}
-          src={userProfilePic}
+          src={currentUser.icon}
           alt=""
         />
       </div>

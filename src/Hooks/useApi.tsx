@@ -1,9 +1,8 @@
 import { useAuthContext } from "./useAuthContext";
-import { user } from "../Types/user";
 export const useApi = (Url?: string) => {
   // const ApiUrl = Url ?? "https://charming-figolla-19a92e.netlify.app";
   const ApiUrl = Url ?? "http://localhost:8888";
-  const { user, setCurrentUser, currentUser } = useAuthContext();
+  const { user } = useAuthContext();
   const headers = { "Content-Type": "Application/json", token: user ?? "" };
   const getTweets = async () => {
     const result = await fetch(`${ApiUrl}/api/tweet/get`, {
