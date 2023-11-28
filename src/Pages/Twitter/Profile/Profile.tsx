@@ -34,8 +34,12 @@ const Profile = () => {
           {currentUser?.name}
         </div>
         <div>
-          <Link to={"/profile/following"}>{0 + " Following"}</Link>
-          <Link to={"/profile/followers"}>{0 + "Followers"}</Link>
+          <Link to={"/profile/following"}>
+            {currentUser?.following.length + " Following"}
+          </Link>
+          <Link to={"/profile/followers"}>
+            {currentUser?.followers.length + "Followers"}
+          </Link>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <img

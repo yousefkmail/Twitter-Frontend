@@ -1,7 +1,8 @@
 import { useAuthContext } from "./useAuthContext";
+const url = import.meta.env.VITE_API_URL;
 export const useApi = (Url?: string) => {
-  const ApiUrl = Url ?? "https://charming-figolla-19a92e.netlify.app";
-  // const ApiUrl = Url ?? "http://localhost:8888";
+  // const ApiUrl = Url ?? "https://charming-figolla-19a92e.netlify.app";
+  const ApiUrl = Url ?? url;
   const { user } = useAuthContext();
   const headers = { "Content-Type": "Application/json", token: user ?? "" };
   const getTweets = async () => {
@@ -32,11 +33,12 @@ export const useApi = (Url?: string) => {
   };
 
   const PostTweet = async (payload: any) => {
-    await fetch(`${ApiUrl}/api/tweet/post`, {
+    const result = await fetch(`${ApiUrl}/api/tweet/post`, {
       method: "POST",
       headers: { token: user },
       body: payload,
     });
+    return result;
   };
 
   const GetFollowing = async () => {
@@ -96,6 +98,29 @@ export const useApi = (Url?: string) => {
     });
     return result;
   };
+  const DeleteTweet = async (_id: string) => {
+    const result = await fetch(`${ApiUrl}/api/tweet/delete/${_id}`, {
+      method: "DELETE",
+      headers: { token: user },
+    });
+    return result;
+  };
+
+  const LikePost = async (_id: string) => {
+    const result = await fetch(`${ApiUrl}/api/tweet/like/${_id}`, {
+      method: "POST",
+      headers: { token: user },
+    });
+    return result;
+  };
+
+  const unLikePost = async (_id: string) => {
+    const result = await fetch(`${ApiUrl}/api/tweet/unlike/${_id}`, {
+      method: "POST",
+      headers: { token: user },
+    });
+    return result;
+  };
 
   return {
     getTweets,
@@ -109,5 +134,8 @@ export const useApi = (Url?: string) => {
     GetRecAccounts,
     GetUser,
     EditProfile,
+    DeleteTweet,
+    LikePost,
+    unLikePost,
   };
 };

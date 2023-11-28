@@ -22,10 +22,7 @@ export const RecAccountsContextProvider = ({ children }: any) => {
   }, [user]);
 
   const Fetch = async () => {
-    console.log(user);
     const result = await GetRecAccounts();
-
-    console.log(result.status);
 
     if (result.ok) {
       const json = await result.json();

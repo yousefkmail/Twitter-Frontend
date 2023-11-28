@@ -14,10 +14,39 @@ const HomeNoUser = () => {
   };
 
   return (
-    <div style={{ display: "grid", placeItems: "center" }}>
-      <button onClick={() => setIsLoggingIn(true)}> log in </button>
-      <button onClick={() => setIsSigningUp(true)}> sign up</button>
+    <div
+      style={{
+        display: "grid",
+        placeItems: "center",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
+      <div>
+        <button
+          style={{
+            backgroundColor: "rgb(29, 155, 240)",
+            borderRadius: "9999px",
+            width: "300px",
+          }}
+          onClick={() => setIsSigningUp(true)}
+        >
+          sign up
+        </button>
 
+        <h4>Already have an account?</h4>
+        <button
+          style={{
+            color: "rgb(29, 155, 240)",
+            borderRadius: "9999px",
+            width: "300px",
+            border: "1px solid rgba(255, 255, 255,0.3)",
+          }}
+          onClick={() => setIsLoggingIn(true)}
+        >
+          log in
+        </button>
+      </div>
       {isLoggingIn && <LoginPopup CloseWindow={CloseLoggingIn} />}
       {isSigningUp && <SingupPopup CloseWindow={CloseSigningUp} />}
     </div>

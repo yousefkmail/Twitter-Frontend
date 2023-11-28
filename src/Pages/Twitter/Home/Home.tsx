@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import HomeHeader from "../../../Components/Headers/HomeHeader/HomeHeader";
 import NewPostArea from "../../../Components/NewPostArea/NewPostArea";
 import Tweet from "../../../Components/Tweet/Tweet";
@@ -7,18 +6,13 @@ import Trends from "../../../Components/Trends/Trends";
 import Searchbar from "../../../Components/Searchbar/Searchbar";
 import WhoToFollow from "../../../Components/Whotofollow/WhoToFollow";
 import { UseRecommendedAccountsContext } from "../../../Context/UseRecommendedAccountsContext";
-import { useApi } from "../../../Hooks/useApi";
+import { useContext } from "react";
+import { TweetsContext } from "../../../Context/TweetsContext";
 // import { io, Socket } from "socket.io-client";
 const Home = () => {
   const { RecAccounts } = UseRecommendedAccountsContext();
-  const [tweets, setTweets] = useState([]);
   // const [socket, setSocket] = useState<Socket>();
-  const { getTweets } = useApi();
-  const FetchTweets = async () => {
-    const value = await getTweets();
-    const json = await value.json();
-    setTweets(json.tweets);
-  };
+  const { tweets } = useContext(TweetsContext);
 
   // useEffect(() => {
   //   if (user.length > 0) {
@@ -37,10 +31,6 @@ const Home = () => {
   //  };
   // }, [user]);
 
-  useEffect(() => {
-    FetchTweets();
-  }, []);
-
   return (
     <div style={{ width: "100%", display: "flex" }}>
       <div
@@ -53,8 +43,8 @@ const Home = () => {
       >
         <HomeHeader />
         <NewPostArea />
-        {tweets.map((item: TweetModel, index) => (
-          <Tweet {...item} key={index} />
+        {tweets?.map((item: TweetModel) => (
+          <Tweet {...item} key={item._id} />
         ))}
       </div>
       <div style={{ width: "40%", marginLeft: "60px" }}>

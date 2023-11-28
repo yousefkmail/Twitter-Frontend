@@ -9,7 +9,6 @@ const RecAccount = ({ _id, icon, name }: RecommendedAccountType) => {
   const handleClick = async () => {
     const data = { user: _id, followstatus: !isFollowing };
     const result = await FollowAccount(JSON.stringify(data));
-    console.log(await result.json());
     if (result.ok) {
       setIsFollowing(!isFollowing);
     }

@@ -5,14 +5,17 @@ import App from "./App.tsx";
 import "./index.css";
 import { AuthContextProvider } from "./Context/AuthContext.tsx";
 import { RecAccountsContextProvider } from "./Context/RecommendedAccountsContext.tsx";
+import { TweetsContextProvider } from "./Context/TweetsContext.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <RecAccountsContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </RecAccountsContextProvider>
+      <TweetsContextProvider>
+        <RecAccountsContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </RecAccountsContextProvider>
+      </TweetsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

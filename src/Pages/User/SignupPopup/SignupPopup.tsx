@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import style from "./SignupPopup.module.css";
 import { useSignup } from "../../../Hooks/useSignup";
-import { useEffect } from "react";
 import Error from "../../../Components/error/Error";
 import ComponentLoader from "../../../Components/ComponentLoader/ComponentLoad";
 interface LoginPopupProps {
@@ -38,9 +37,6 @@ const YearOptions = () => {
 const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
   const { register, OnSubmit, errors, isLoading } = useSignup();
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
   return (
     <div className={style["container"]}>
       <div className={style["inner-container"]}>
@@ -52,7 +48,6 @@ const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
                 <button style={{ borderRadius: "999px" }} onClick={CloseWindow}>
                   <FontAwesomeIcon icon={faX} />
                 </button>
-                <h3>Step 1 of 3</h3>
               </div>
               <div style={{ padding: "0px 80px" }}>
                 <div style={{ padding: "20px 0", fontSize: "18px" }}>
