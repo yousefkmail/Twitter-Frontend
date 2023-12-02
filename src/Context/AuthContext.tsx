@@ -27,15 +27,20 @@ export const AuthContextProvider = ({ children }: any) => {
     if (localstorageitem) {
       const user = JSON.parse(localstorageitem);
       setUser(user);
-      FetchUser(user);
+    } else {
+      setUserLoaded(true);
     }
-    setUserLoaded(true);
   }, []);
+
+  useEffect(() => {
+    if (user) FetchUser(user);
+  }, [user]);
 
   const FetchUser = async (user: string) => {
     const result = await GetUser(user);
     const data = await result.json();
     setCurrentUser(data.user);
+    setUserLoaded(true);
   };
 
   return (

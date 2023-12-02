@@ -6,6 +6,7 @@ import Home from "./Pages/Twitter/Home/Home";
 import AuthRoutes from "./Routes/AuthRoutes";
 import Search from "./Pages/Twitter/Search/Search";
 import Profile from "./Pages/Twitter/Profile/Profile";
+import TweetPage from "./Pages/Twitter/Tweet/TweetPage";
 
 function App() {
   const { user } = useAuthContext();
@@ -42,6 +43,7 @@ function App() {
             </Route>
             <Route path="*" element={<div>abome </div>} />
             <Route path="/search" element={<Search />} />
+            <Route path=":userId/:tweetId" element={<TweetPage />} />
           </Route>
         </Route>
       </Routes>

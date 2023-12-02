@@ -3,6 +3,7 @@ import NewPostArea from "../../../Components/NewPostArea/NewPostArea";
 import Tweet from "../../../Components/Tweet/Tweet";
 import { TweetModel } from "../../../Types/TweetModel";
 import Trends from "../../../Components/Trends/Trends";
+import { useTranslation } from "react-i18next";
 import Searchbar from "../../../Components/Searchbar/Searchbar";
 import WhoToFollow from "../../../Components/Whotofollow/WhoToFollow";
 import { UseRecommendedAccountsContext } from "../../../Context/UseRecommendedAccountsContext";
@@ -13,7 +14,7 @@ const Home = () => {
   const { RecAccounts } = UseRecommendedAccountsContext();
   // const [socket, setSocket] = useState<Socket>();
   const { tweets } = useContext(TweetsContext);
-
+  const { t } = useTranslation();
   // useEffect(() => {
   //   if (user.length > 0) {
   //     const socket = io("http://localhost:3000", {
@@ -30,6 +31,8 @@ const Home = () => {
   //    socket?.close();
   //  };
   // }, [user]);
+
+  console.log(t("greeting"));
 
   return (
     <div style={{ width: "100%", display: "flex" }}>

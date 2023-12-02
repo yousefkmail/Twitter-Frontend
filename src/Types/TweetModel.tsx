@@ -4,6 +4,7 @@ export interface TweetModel {
   Images: [string];
   Videos: [string];
   likesCount: number;
+  superTweet: string;
   _id: string;
   publisher: {
     id: string;

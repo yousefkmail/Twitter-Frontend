@@ -19,6 +19,10 @@ const Trends = () => {
     <div
       style={{
         marginTop: "40px",
+        paddingTop: "7px",
+        paddingLeft: "7px",
+        borderRadius: "10px",
+        overflow: "hidden",
         backgroundColor: "var(--secondary-background-color)",
       }}
     >

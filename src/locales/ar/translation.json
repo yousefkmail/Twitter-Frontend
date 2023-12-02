@@ -1,0 +1,11 @@
+{
+    "greeting": "Hello, World!",
+    "newPostPlaceholder": "ماذا يحدث؟!",
+    "HomeNavButton": "الصفحة الرئيسية",
+    "NotificationNavButton": "الاشعارات",
+    "MessagesNavButton": "الرسائل",
+    "ListsNavButton": "القوائم",
+    "BookmarksNavButton": "إشارات مرجعية",
+    "CommunitiesNavButton": "المجتمعات",
+    "ProfileNavButton": "الصفحة الشخصية"
+}

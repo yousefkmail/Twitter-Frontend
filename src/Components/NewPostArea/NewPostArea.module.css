@@ -3,6 +3,9 @@
   border-radius: 9999px;
   background-color: rgb(29, 155, 240);
   font-weight: bold;
+}
+
+.submit-button:disabled {
   cursor: default;
 }
 

@@ -14,10 +14,11 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
   const { logout } = useLogout();
-
+  const { i18n, t } = useTranslation();
   return (
     <div className={style["nav-container"]}>
       <FontAwesomeIcon
@@ -27,27 +28,29 @@ const Sidebar = () => {
       />
 
       <Navlink icon={faHouse} to={"/home"}>
-        Home
+        {t("HomeNavButton")}
       </Navlink>
       <Navlink icon={faMagnifyingGlass} to={"/notifications"}>
-        Notifications
+        {t("NotificationNavButton")}
       </Navlink>
       <Navlink icon={faBell} to={"/messages"}>
-        Messages
+        {t("MessagesNavButton")}
       </Navlink>
       <Navlink icon={faList} to={"/lists"}>
-        Lists
+        {t("ListsNavButton")}
       </Navlink>
       <Navlink icon={faBookmark} to={"/bookmarks"}>
-        Bookmarks
+        {t("BookmarksNavButton")}
       </Navlink>
       <Navlink icon={faUserGroup} to={"/communities"}>
-        Communities
+        {t("CommunitiesNavButton")}
       </Navlink>
       <Navlink icon={faUser} to={"/profile"}>
-        Profile
+        {t("ProfileNavButton")}
       </Navlink>
       <button onClick={logout}>Log out</button>
+      <button onClick={() => i18n.changeLanguage("en")}>English</button>
+      <button onClick={() => i18n.changeLanguage("ar")}>Arabic</button>
     </div>
   );
 };

@@ -1,3 +1,10 @@
 .trend-container {
   height: 60px;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+  position: relative;
+}
+
+.trend-container:hover {
+  background-color: rgb(32, 35, 39);
 }

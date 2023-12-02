@@ -5,8 +5,26 @@ export const useApi = (Url?: string) => {
   const ApiUrl = Url ?? url;
   const { user } = useAuthContext();
   const headers = { "Content-Type": "Application/json", token: user ?? "" };
-  const getTweets = async () => {
-    const result = await fetch(`${ApiUrl}/api/tweet/get`, {
+  const getTweets = async (page: number, pageSize: number) => {
+    const result = await fetch(`${ApiUrl}/api/tweet/get/${page}/${pageSize}`, {
+      method: "GET",
+      headers: headers,
+    });
+
+    return result;
+  };
+
+  const getTweet = async (_id: string) => {
+    const result = await fetch(`${ApiUrl}/api/tweet/get/${_id}`, {
+      method: "GET",
+      headers: headers,
+    });
+
+    return result;
+  };
+
+  const getComments = async (_id: string) => {
+    const result = await fetch(`${ApiUrl}/api/tweet/comment/get/${_id}`, {
       method: "GET",
       headers: headers,
     });
@@ -137,5 +155,7 @@ export const useApi = (Url?: string) => {
     DeleteTweet,
     LikePost,
     unLikePost,
+    getTweet,
+    getComments,
   };
 };
