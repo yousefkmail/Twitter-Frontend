@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
-import Trend, { TrendProps } from "./Trend";
-import ComponentLoader from "../ComponentLoader/ComponentLoad";
-import { useApi } from "../../Hooks/useApi";
-const Trends = () => {
-  const [Trends, setTrends] = useState([]);
-  const { GetTrends } = useApi();
-  useEffect(() => {
-    FetchTrends();
-  }, []);
+import { useContext } from "react";
+import { TrendProps } from "./Trend";
+import { ComponentLoader, Trend } from "../../Components/index";
+import { useTranslation } from "react-i18next";
+import { TrendsContext } from "../../Context/TrendsContext";
 
-  const FetchTrends = async () => {
-    const result = await GetTrends();
-    const json = await result.json();
-    setTrends(json.Trends);
-  };
+const Trends = () => {
+  const { t } = useTranslation();
+
+  const { Trends } = useContext(TrendsContext);
 
   return (
     <div
@@ -22,7 +16,6 @@ const Trends = () => {
         paddingTop: "7px",
         paddingLeft: "7px",
         borderRadius: "10px",
-        overflow: "hidden",
         backgroundColor: "var(--secondary-background-color)",
       }}
     >
@@ -30,7 +23,7 @@ const Trends = () => {
         Condition={Trends.length > 0}
         Component={
           <div>
-            <h3>Trends for you</h3>
+            <h3>{t("TrendsLabel")}</h3>
             {Trends.map((item: TrendProps, index) => (
               <Trend key={index} {...item} />
             ))}

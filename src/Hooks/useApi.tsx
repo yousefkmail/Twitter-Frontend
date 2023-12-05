@@ -14,6 +14,18 @@ export const useApi = (Url?: string) => {
     return result;
   };
 
+  const getUserTweets = async (page: number, pageSize: number) => {
+    const result = await fetch(
+      `${ApiUrl}/api/user/tweets/${page}/${pageSize}`,
+      {
+        method: "GET",
+        headers: headers,
+      }
+    );
+
+    return result;
+  };
+
   const getTweet = async (_id: string) => {
     const result = await fetch(`${ApiUrl}/api/tweet/get/${_id}`, {
       method: "GET",
@@ -154,6 +166,7 @@ export const useApi = (Url?: string) => {
     EditProfile,
     DeleteTweet,
     LikePost,
+    getUserTweets,
     unLikePost,
     getTweet,
     getComments,

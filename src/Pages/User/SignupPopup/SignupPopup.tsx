@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import style from "./SignupPopup.module.css";
-import { useSignup } from "../../../Hooks/useSignup";
+import { useSignup } from "../../../Hooks/index";
 import Error from "../../../Components/error/Error";
 import ComponentLoader from "../../../Components/ComponentLoader/ComponentLoad";
 interface LoginPopupProps {

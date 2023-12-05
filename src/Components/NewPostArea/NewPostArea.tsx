@@ -1,6 +1,6 @@
-import { useAuthContext } from "../../Hooks/useAuthContext";
+import { useAuthContext } from "../../Hooks/index";
 import style from "./NewPostArea.module.css";
-import { usePostNewTweet } from "../../Hooks/usePostNewTweet";
+import { usePostNewTweet } from "../../Hooks/index";
 import { useEffect, useRef, useState } from "react";
 import ImagePreview from "./ImagePreview";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
@@ -50,7 +50,7 @@ const NewPostArea = ({ superTweet }: newPostAreaProps) => {
     >
       <div style={{ width: "60px" }}>
         <img
-          style={{ width: "70%", objectFit: "cover" }}
+          style={{ width: "70%", objectFit: "cover", borderRadius: "9999px" }}
           src={currentUser.icon}
           alt=""
         />
@@ -128,7 +128,7 @@ const NewPostArea = ({ superTweet }: newPostAreaProps) => {
               disabled={!canSubmit}
               type="submit"
             >
-              Post
+              {t("PostLabel")}
             </button>
           </div>
         )}

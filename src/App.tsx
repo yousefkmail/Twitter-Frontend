@@ -1,16 +1,26 @@
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import Sidebar from "./Components/Navbars/Sidebar";
-import { useAuthContext } from "./Hooks/useAuthContext";
+import {
+  SideBar,
+  Tweets,
+  Trends,
+  DefaultPageDesign,
+  WhoToFollow,
+  SearchBar,
+} from "./Components/index";
+import { useAuthContext } from "./Hooks/index";
 import HomeNoUser from "./Pages/HomeNoUser";
 import Home from "./Pages/Twitter/Home/Home";
 import AuthRoutes from "./Routes/AuthRoutes";
 import Search from "./Pages/Twitter/Search/Search";
 import Profile from "./Pages/Twitter/Profile/Profile";
 import TweetPage from "./Pages/Twitter/Tweet/TweetPage";
+import { useContext } from "react";
+import { UserTweetsContext } from "./Context/UserTweetsContext";
+import { UseRecommendedAccountsContext } from "./Hooks/index";
 
 function App() {
   const { user } = useAuthContext();
-
+  const { RecAccounts } = UseRecommendedAccountsContext();
   return (
     <div className="app">
       <Routes>
@@ -22,8 +32,8 @@ function App() {
           <Route
             element={
               <>
-                <Sidebar />
-                <div style={{ width: "1000px", height: "100vh" }}>
+                <SideBar />
+                <div style={{ width: "1000px", height: "max(100vh,auto)" }}>
                   <Outlet />
                 </div>
               </>
@@ -31,11 +41,49 @@ function App() {
           >
             <Route path="/about" element={<div>about me </div>} />
             <Route path="/home" element={<Home />} />
+            <Route
+              path="/explore"
+              element={
+                <DefaultPageDesign
+                  LeftPartition={
+                    <>
+                      <SearchBar />
+                      <Trends />
+                    </>
+                  }
+                  RightPartition={
+                    <>
+                      <WhoToFollow RecAccounts={RecAccounts} />
+                    </>
+                  }
+                />
+              }
+            />
             <Route path="/profile" element={<Profile />}>
-              <Route path="likes" element={"likes"}></Route>
-              <Route path="replies" element={"replies"}></Route>
-              <Route path="posts" element={"posts"}></Route>
-              <Route path="media" element={"media"}></Route>
+              <Route
+                index
+                element={
+                  <Tweets Tweets={useContext(UserTweetsContext).tweets} />
+                }
+              ></Route>
+              <Route
+                path="likes"
+                element={
+                  <Tweets Tweets={useContext(UserTweetsContext).tweets} />
+                }
+              ></Route>
+              <Route
+                path="replies"
+                element={
+                  <Tweets Tweets={useContext(UserTweetsContext).tweets} />
+                }
+              ></Route>
+              <Route
+                path="media"
+                element={
+                  <Tweets Tweets={useContext(UserTweetsContext).tweets} />
+                }
+              ></Route>
             </Route>
             <Route path="/profile">
               <Route path="following" element={"following"}></Route>

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { RecommendedAccountType } from "../../Types/RecommendedAccountsType";
 import Icon from "../Icon/Icon";
-import { useApi } from "../../Hooks/useApi";
+import { useApi } from "../../Hooks/index";
+import { useTranslation } from "react-i18next";
 
 const RecAccount = ({ _id, icon, name }: RecommendedAccountType) => {
+  const { t } = useTranslation();
+
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const { FollowAccount } = useApi();
   const handleClick = async () => {
@@ -29,7 +32,7 @@ const RecAccount = ({ _id, icon, name }: RecommendedAccountType) => {
         <span> {name}</span>
       </div>
       <button onClick={handleClick}>
-        {isFollowing ? "unfollow" : "Follow"}
+        {isFollowing ? t("UnFollowLabel") : t("FollowLabel")}
       </button>
     </div>
   );

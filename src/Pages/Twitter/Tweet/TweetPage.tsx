@@ -1,13 +1,15 @@
+import {
+  Tweet,
+  SearchBar,
+  Trends,
+  WhoToFollow,
+} from "../../../Components/index";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useApi } from "../../../Hooks/useApi";
-import { useAuthContext } from "../../../Hooks/useAuthContext";
+import { useApi } from "../../../Hooks/index";
+import { useAuthContext } from "../../../Hooks/index";
 import { TweetModel } from "../../../Types/TweetModel";
-import Tweet from "../../../Components/Tweet/Tweet";
-import Searchbar from "../../../Components/Searchbar/Searchbar";
-import Trends from "../../../Components/Trends/Trends";
-import WhoToFollow from "../../../Components/Whotofollow/WhoToFollow";
-import { UseRecommendedAccountsContext } from "../../../Context/UseRecommendedAccountsContext";
+import { UseRecommendedAccountsContext } from "../../../Hooks/index";
 
 const TweetPage = () => {
   const { tweetId } = useParams();
@@ -64,7 +66,7 @@ const TweetPage = () => {
           ))}
       </div>
       <div style={{ width: "40%", marginLeft: "60px" }}>
-        <Searchbar />
+        <SearchBar />
         <Trends />
         <WhoToFollow RecAccounts={RecAccounts} />
       </div>

@@ -7,5 +7,13 @@
     "ListsNavButton": "Lists",
     "BookmarksNavButton": "Bookmarks",
     "CommunitiesNavButton": "Communities",
-    "ProfileNavButton": "Profile"
+    "ProfileNavButton": "Profile",
+    "recAccountsLabel": "who to follow",
+    "FollowLabel": "Follow",
+    "UnFollowLabel": "UnFollow",
+    "TrendsLabel": "Trends for you",
+    "PostLabel": "Post",
+    "LogOutLabel": "Log out",
+    "ForYouLabel": "For you",
+    "FollowingLabel": "Following"
 }

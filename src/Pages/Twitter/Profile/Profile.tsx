@@ -1,11 +1,15 @@
-import Back from "../../../Components/Buttons/Navlink/Back/Back";
-import Trends from "../../../Components/Trends/Trends";
-import WhoToFollow from "../../../Components/Whotofollow/WhoToFollow";
-import { UseRecommendedAccountsContext } from "../../../Context/UseRecommendedAccountsContext";
+import {
+  Back,
+  Trends,
+  WhoToFollow,
+  EditProfile,
+  DefaultPageDesign,
+} from "../../../Components/index";
+import { UseRecommendedAccountsContext } from "../../../Hooks/index";
 import { Link, Outlet } from "react-router-dom";
-import { useAuthContext } from "../../../Hooks/useAuthContext";
+import { useAuthContext } from "../../../Hooks/index";
 import { useState } from "react";
-import EditProfile from "../../../Components/EditProfile/EditProfile";
+import ProfileNavLink from "./ProfileNavLink";
 
 const Profile = () => {
   const { RecAccounts } = UseRecommendedAccountsContext();
@@ -19,60 +23,106 @@ const Profile = () => {
   const CloseEditProfile = () => {
     setIsEditingProfile(false);
   };
+
+  const getJoinedDate = () => {
+    const date = new Date(currentUser.createdAt);
+
+    const currentMonthName = date.toLocaleString("default", { month: "long" });
+    const currentYear = date.getFullYear();
+
+    return `joined ${currentMonthName} ${currentYear}`;
+  };
+
+  console.log(currentUser?.createdAt);
   return (
-    <div style={{ width: "100%", display: "flex" }}>
-      <div
-        style={{
-          flexGrow: 1,
-          maxWidth: "600px",
-          borderLeft: "1px solid rgba(255,255,255,0.3)",
-          borderRight: "1px solid rgba(255,255,255,0.3)",
-        }}
-      >
-        <div>
-          <Back />
-          {currentUser?.name}
-        </div>
-        <div>
-          <Link to={"/profile/following"}>
-            {currentUser?.following.length + " Following"}
-          </Link>
-          <Link to={"/profile/followers"}>
-            {currentUser?.followers.length + "Followers"}
-          </Link>
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <img
-            style={{ width: "100px", height: "100px" }}
-            src={currentUser?.icon}
-            alt="No image"
-          />
-          <button onClick={OpenEditProfile}>Edit profile</button>
-        </div>
-        {IsEditingProfile && <EditProfile CloseWindow={CloseEditProfile} />}
+    <DefaultPageDesign
+      LeftPartition={
+        <>
+          <div>
+            <Back />
+            {currentUser?.name}
+          </div>
+          <div style={{ height: "200px" }}>
+            <img
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              src={currentUser.coverImage}
+              alt=""
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "right",
+              height: "100px",
+              position: "relative",
+              alignItems: "center",
+            }}
+          >
+            <img
+              style={{
+                objectFit: "cover",
+                width: "140px",
+                height: "140px",
+                position: "absolute",
+                top: "-70px",
+                borderRadius: "9999px",
+                left: "40px",
+              }}
+              src={currentUser?.icon}
+              alt="No image"
+            />
+            <button
+              style={{
+                marginRight: "20px",
+                border: "1px solid rgba(255,255,255,0.2)",
+                borderRadius: "9999px",
+              }}
+              onClick={OpenEditProfile}
+            >
+              Edit profile
+            </button>
+          </div>
+          <div style={{ padding: "20px" }}>
+            <div>{currentUser?.name}</div>
+            <div>{`@${currentUser?._id}`}</div>
+            <div>{getJoinedDate()}</div>
+            <div>
+              <Link
+                style={{ marginRight: "20px", color: "white" }}
+                to={"/profile/following"}
+              >
+                {currentUser?.following.length + " Following"}
+              </Link>
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Link to={"/profile"} style={{ flexGrow: "1" }}>
-            posts
-          </Link>
-          <Link to={"/profile/replies"} style={{ flexGrow: "1" }}>
-            replies
-          </Link>
-          <Link to={"/profile/media"} style={{ flexGrow: "1" }}>
-            media
-          </Link>
-          <Link to={"/profile/likes"} style={{ flexGrow: "1" }}>
-            posts
-          </Link>
-        </div>
-        <Outlet />
-      </div>
+              <Link style={{ color: "white" }} to={"/profile/followers"}>
+                {currentUser?.followers.length + " Followers"}
+              </Link>
+            </div>
+          </div>
+          {IsEditingProfile && <EditProfile CloseWindow={CloseEditProfile} />}
 
-      <div style={{ width: "40%", marginLeft: "60px" }}>
-        <WhoToFollow RecAccounts={RecAccounts} />
-        <Trends />
-      </div>
-    </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+            }}
+          >
+            <ProfileNavLink to="/profile/" content="Posts" />
+            <ProfileNavLink to="/profile/replies" content="Replies" />
+            <ProfileNavLink to="/profile/media" content="Media" />
+            <ProfileNavLink to="/profile/likes" content="Likes" />
+          </div>
+          <Outlet />
+        </>
+      }
+      RightPartition={
+        <>
+          <WhoToFollow RecAccounts={RecAccounts} />
+          <Trends />
+        </>
+      }
+    />
   );
 };
 

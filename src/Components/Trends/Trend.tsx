@@ -3,7 +3,7 @@ import style from "./Trends.module.css";
 import { useNavigate } from "react-router-dom";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { usePopup } from "../../Hooks/usePopup";
+import { usePopup } from "../../Hooks/index";
 export interface TrendProps {
   title: string;
   tweetCount: number;

@@ -3,8 +3,12 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.295);
   display: flex;
   align-items: flex-start;
+  padding-right: 10px;
 }
 
+.container:hover {
+  cursor: pointer;
+}
 .publisher-icon {
   width: 30px;
   aspect-ratio: 1/1;

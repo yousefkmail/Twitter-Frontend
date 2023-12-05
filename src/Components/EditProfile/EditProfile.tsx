@@ -1,6 +1,6 @@
-import { useAuthContext } from "../../Hooks/useAuthContext";
-import { useEditProfile } from "../../Hooks/useEditProfile";
-import ComponentLoader from "../ComponentLoader/ComponentLoad";
+import { useAuthContext } from "../../Hooks/index";
+import { useEditProfile } from "../../Hooks/index";
+import { ComponentLoader } from "../../Components/index";
 
 interface EditProfileProps {
   CloseWindow: () => void;
@@ -18,6 +18,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
         height: "100vh",
         top: "0",
         left: "0",
+        zIndex: "1000",
       }}
     >
       <div
@@ -29,6 +30,8 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
           width: "500px",
           height: "500px",
           display: "grid",
+          backgroundColor: "var(--background-color)",
+
           placeItems: "center",
         }}
       >
@@ -44,6 +47,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                   alt=""
                 />
                 <input {...register("icon")} type="file" />
+                <input {...register("coverImage")} type="file" />
                 <input
                   {...register("name")}
                   type="text"

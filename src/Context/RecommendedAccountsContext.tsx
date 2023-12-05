@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { RecommendedAccountType } from "../Types/RecommendedAccountsType";
-import { useAuthContext } from "../Hooks/useAuthContext";
-import { useApi } from "../Hooks/useApi";
+import { useAuthContext } from "../Hooks/index";
+import { useApi } from "../Hooks/index";
 interface RecAccountsType {
   RecAccounts: RecommendedAccountType[];
 }

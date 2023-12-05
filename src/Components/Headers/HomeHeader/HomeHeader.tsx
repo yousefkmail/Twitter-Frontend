@@ -1,4 +1,6 @@
+import { useTranslation } from "react-i18next";
 const HomeHeader = () => {
+  const { t } = useTranslation();
   return (
     <div
       style={{
@@ -9,8 +11,8 @@ const HomeHeader = () => {
         display: "flex",
       }}
     >
-      <button style={{ flexGrow: "1" }}>Following</button>
-      <button style={{ flexGrow: "1" }}>For you</button>
+      <button style={{ flexGrow: "1" }}>{t("FollowingLabel")}</button>
+      <button style={{ flexGrow: "1" }}>{t("ForYouLabel")}</button>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import style from "./Tweet.module.css";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import TweetSettings from "./TweetSettings";
-import { useDeleteTweet } from "../../Hooks/Tweets/useDeleteTweet";
+import { useDeleteTweet } from "../../Hooks/index";
 import ScreenLoader from "../ScreenLoader/ScreenLoader";
 import { faHeart, faComment } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -13,16 +13,17 @@ import {
   faChartSimple,
   faHeart as FillHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { usePopup } from "../../Hooks/usePopup";
-import { useApi } from "../../Hooks/useApi";
+import { usePopup } from "../../Hooks/index";
+import { useApi } from "../../Hooks/index";
 import NewPostArea from "../NewPostArea/NewPostArea";
-import { useAuthContext } from "../../Hooks/useAuthContext";
+import { useAuthContext } from "../../Hooks/index";
 const Tweet = ({
   Images,
   contentText,
   publisher,
   _id,
   likesCount,
+  createdAt,
   isLiked,
 }: TweetModel) => {
   const { OnSubmit, isLoading } = useDeleteTweet(_id);
@@ -35,8 +36,8 @@ const Tweet = ({
   const { currentUser } = useAuthContext();
 
   const [loaded, setIsLoaded] = useState(false);
+
   const HandleLikePressed = async () => {
-    console.log(loading);
     if (loading) return;
     setisloading(true);
     if (isLikedState) {
@@ -55,6 +56,31 @@ const Tweet = ({
     setisloading(false);
   };
 
+  const getDateStamp = () => {
+    const creationDate = new Date(createdAt);
+    const currentDate = new Date();
+
+    let stamp = "";
+    if (
+      currentDate.getMonth() === creationDate.getMonth() &&
+      creationDate.getDate() === currentDate.getDate()
+    ) {
+      if (currentDate.getHours() === creationDate.getHours()) {
+        stamp =
+          (currentDate.getMinutes() - creationDate.getMinutes()).toString() +
+          "m";
+      } else
+        stamp =
+          (currentDate.getHours() - creationDate.getHours()).toString() + "h";
+    } else {
+      stamp =
+        creationDate.toLocaleString("default", { month: "short" }).toString() +
+        " " +
+        creationDate.getDate();
+    }
+    return stamp;
+  };
+
   useEffect(() => {
     if (Images.length < 1) setIsLoaded(true);
   }, []);
@@ -71,7 +97,6 @@ const Tweet = ({
     OnSubmit();
   };
 
-  console.log(loaded);
   return (
     <div
       onClick={() =>
@@ -87,7 +112,11 @@ const Tweet = ({
       )}
       <div style={{ flexGrow: "1" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>{publisher.name}</span>
+          <div>
+            <span style={{ marginRight: "20px" }}>{publisher.name}</span>
+            {/* <span>{`@${publisher.id}`}</span> */}
+            <span> {getDateStamp()}</span>
+          </div>
           <div
             onClick={(e) => e.stopPropagation()}
             style={{ position: "relative" }}
@@ -111,20 +140,38 @@ const Tweet = ({
           </div>
         </div>
         <div>{contentText}</div>
-        {Images.map((item, index) => (
-          <img
-            onLoad={() => {
-              console.log("asd");
-              setIsLoaded(true);
+        {Images.length > 0 && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gridTemplateRows: "300px min-content",
+              border: "1px solid rgba(255,255,255,0.3)",
+              borderRadius: "10px",
+              justifyItems: "stretch",
+              overflow: "hidden",
             }}
-            loading="lazy"
-            style={{ width: "100%" }}
-            key={index}
-            src={item}
-            alt=""
-          />
-        ))}
-
+          >
+            {Images.map((item, index) => (
+              <img
+                onLoad={() => {
+                  setIsLoaded(true);
+                }}
+                loading="lazy"
+                style={{
+                  overflow: "hidden",
+                  width: "100%",
+                  height: "100%",
+                  // height: "100%",
+                  objectFit: "cover",
+                }}
+                key={index}
+                src={item}
+                alt=""
+              />
+            ))}
+          </div>
+        )}
         <div
           style={{
             display: "flex",

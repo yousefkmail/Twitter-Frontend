@@ -5,7 +5,7 @@ import {
   Dispatch,
   useEffect,
 } from "react";
-import { useApi } from "../Hooks/useApi";
+import { useApi } from "../Hooks/index";
 import { user } from "../Types/user";
 interface contextinterface {
   user: string;

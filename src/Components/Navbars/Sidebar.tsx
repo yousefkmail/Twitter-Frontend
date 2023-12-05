@@ -1,6 +1,6 @@
 import style from "./Sidebar.module.css";
-import { useLogout } from "../../Hooks/useLogout";
-import Navlink from "../Buttons/Navlink/Navlink";
+import { useLogout } from "../../Hooks/index";
+import { NavLink } from "../../Components/index";
 import {
   faHouse,
   faMagnifyingGlass,
@@ -27,28 +27,31 @@ const Sidebar = () => {
         icon={faXTwitter}
       />
 
-      <Navlink icon={faHouse} to={"/home"}>
+      <NavLink icon={faHouse} to={"/home"}>
         {t("HomeNavButton")}
-      </Navlink>
-      <Navlink icon={faMagnifyingGlass} to={"/notifications"}>
+      </NavLink>
+      <NavLink icon={faMagnifyingGlass} to={"/explore"}>
+        Explore
+      </NavLink>
+      <NavLink icon={faMagnifyingGlass} to={"/notifications"}>
         {t("NotificationNavButton")}
-      </Navlink>
-      <Navlink icon={faBell} to={"/messages"}>
+      </NavLink>
+      <NavLink icon={faBell} to={"/messages"}>
         {t("MessagesNavButton")}
-      </Navlink>
-      <Navlink icon={faList} to={"/lists"}>
+      </NavLink>
+      <NavLink icon={faList} to={"/lists"}>
         {t("ListsNavButton")}
-      </Navlink>
-      <Navlink icon={faBookmark} to={"/bookmarks"}>
+      </NavLink>
+      <NavLink icon={faBookmark} to={"/bookmarks"}>
         {t("BookmarksNavButton")}
-      </Navlink>
-      <Navlink icon={faUserGroup} to={"/communities"}>
+      </NavLink>
+      <NavLink icon={faUserGroup} to={"/communities"}>
         {t("CommunitiesNavButton")}
-      </Navlink>
-      <Navlink icon={faUser} to={"/profile"}>
+      </NavLink>
+      <NavLink icon={faUser} to={"/profile"}>
         {t("ProfileNavButton")}
-      </Navlink>
-      <button onClick={logout}>Log out</button>
+      </NavLink>
+      <button onClick={logout}>{t("LogOutLabel")}</button>
       <button onClick={() => i18n.changeLanguage("en")}>English</button>
       <button onClick={() => i18n.changeLanguage("ar")}>Arabic</button>
     </div>

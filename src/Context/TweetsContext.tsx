@@ -1,7 +1,7 @@
 import { Dispatch, createContext, useEffect, useReducer, useRef } from "react";
-import { useApi } from "../Hooks/useApi";
+import { useApi } from "../Hooks/index";
 import { TweetModel } from "../Types/TweetModel";
-import { useAuthContext } from "../Hooks/useAuthContext";
+import { useAuthContext } from "../Hooks/index";
 type TweetsContextProps = {
   tweets: TweetModel[];
   dispatch: Dispatch<any>;
