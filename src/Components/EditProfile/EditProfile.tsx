@@ -23,7 +23,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
   const [iconImage, setIconImage] = useState<File[] | undefined>();
 
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
+    const subscription = watch(() => {
       // console.log(Array.from(getValues("icon") ?? []));
       // console.log(Array.from(getValues("coverImage") ?? []));
       const array = [...Array.from(getValues("icon") ?? [])];

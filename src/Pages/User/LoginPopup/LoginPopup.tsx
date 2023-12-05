@@ -8,7 +8,7 @@ interface LoginPopupProps {
 }
 
 const LoginPopup = ({ CloseWindow }: LoginPopupProps) => {
-  const { isLoading, errors, register, OnSubmit } = useLogin();
+  const { errors, register, OnSubmit } = useLogin();
 
   return (
     <div className={style["container"]}>
