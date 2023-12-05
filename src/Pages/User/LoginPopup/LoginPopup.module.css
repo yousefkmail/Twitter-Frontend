@@ -1,32 +1,42 @@
 .inner-container {
   width: 600px;
   height: 650px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: black;
   border-radius: 15px;
 }
 
 .container {
-  width: 100%;
-  height: 100%;
   background-color: rgba(91, 112, 131, 0.4);
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   color: white;
+  display: grid;
+  place-items: center;
 }
 
 .input-field {
   border: 1px solid rgba(255, 255, 255, 0.321);
-  width: min(100% - 2px, 600px);
+  width: min(100% - 20px, 400px);
   height: 30px;
   margin: 15px 0 0 0;
-  padding: 0;
   outline: none;
   padding-inline: 0;
   padding-block: 0;
   background-color: black;
+  border-radius: 7px;
+  padding: 24px;
+}
+
+.submit-button {
+  border: 1px solid rgba(255, 255, 255, 0.261);
+  width: min(100% - 20px, 400px);
+  background-color: var(--website-secondary-color);
+}
+
+@media (max-width: 600px) {
+  .inner-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
 }

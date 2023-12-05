@@ -1,21 +1,14 @@
-import { FormEvent, useState } from "react";
 import style from "./LoginPopup.module.css";
 import { useLogin } from "../../../Hooks/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
-
+import { Error } from "../../../Components";
 interface LoginPopupProps {
   CloseWindow: () => void;
 }
 
 const LoginPopup = ({ CloseWindow }: LoginPopupProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useLogin();
-  const handlesubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await login(email, password);
-  };
+  const { isLoading, errors, register, OnSubmit } = useLogin();
 
   return (
     <div className={style["container"]}>
@@ -25,35 +18,33 @@ const LoginPopup = ({ CloseWindow }: LoginPopupProps) => {
         </button>
         <div>
           <form
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
             action=""
-            onSubmit={handlesubmit}
+            onSubmit={OnSubmit}
           >
-            <div style={{ padding: "100px" }}>
-              <div>
-                <input
-                  className={style["input-field"]}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                  placeholder="Email"
-                  id="email"
-                />
-                {/* <Error content={errors.name?.message} /> */}
-              </div>
-              <div>
-                <input
-                  className={style["input-field"]}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  placeholder="password"
-                  id="password"
-                />
-                {/* <Error content={errors.email?.message} /> */}
-              </div>
-            </div>
-            <button type="submit">Log in</button>
+            <input
+              {...register("email", { required: "Field is required" })}
+              className={style["input-field"]}
+              type="email"
+              placeholder="Email"
+            />
+            <Error content={errors.email?.message} />
+
+            <input
+              {...register("password", { required: "Field is required" })}
+              className={style["input-field"]}
+              type="password"
+              placeholder="password"
+            />
+            <Error content={errors.password?.message} />
+
+            <button className={style["submit-button"]} type="submit">
+              Log in
+            </button>
           </form>
         </div>
       </div>
