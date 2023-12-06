@@ -13,8 +13,15 @@ export const useEditProfile = () => {
   const { EditProfile } = useApi();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { currentUser, setCurrentUser } = useAuthContext();
-  const { register, handleSubmit } = useForm<EditProfileType>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm<EditProfileType>();
   const OnSubmit = handleSubmit(async (data) => {
+    console.log(data);
     setIsLoading(true);
     const formdata = new FormData();
     if (data.name) formdata.append("name", data.name);
@@ -31,5 +38,5 @@ export const useEditProfile = () => {
     setCurrentUser(dataa);
     setIsLoading(false);
   });
-  return { register, OnSubmit, isLoading };
+  return { register, OnSubmit, isLoading, errors, watch, getValues };
 };

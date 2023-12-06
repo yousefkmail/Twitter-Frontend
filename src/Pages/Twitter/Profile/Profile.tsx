@@ -42,12 +42,19 @@ const Profile = () => {
             <Back />
             {currentUser?.name}
           </div>
-          <div style={{ height: "200px" }}>
-            <img
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              src={currentUser.coverImage}
-              alt=""
-            />
+          <div style={{ height: "200px", backgroundColor: "grey" }}>
+            {currentUser.coverImage && (
+              <img
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  border: "0",
+                }}
+                src={currentUser.coverImage}
+                alt=""
+              />
+            )}
           </div>
           <div
             style={{
@@ -58,19 +65,30 @@ const Profile = () => {
               alignItems: "center",
             }}
           >
-            <img
+            <div
               style={{
-                objectFit: "cover",
-                width: "140px",
-                height: "140px",
+                borderRadius: "9999px",
+                overflow: "hidden",
+                backgroundColor: "black",
                 position: "absolute",
                 top: "-70px",
-                borderRadius: "9999px",
                 left: "40px",
+                width: "140px",
+                height: "140px",
               }}
-              src={currentUser?.icon}
-              alt="No image"
-            />
+            >
+              {currentUser?.icon && (
+                <img
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                  src={currentUser?.icon}
+                  alt="No image"
+                />
+              )}
+            </div>
             <button
               style={{
                 marginRight: "20px",

@@ -49,7 +49,7 @@ const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
                   <FontAwesomeIcon icon={faX} />
                 </button>
               </div>
-              <div style={{ padding: "0px 80px" }}>
+              <div style={{ padding: "0px min(80px, 10%)" }}>
                 <div style={{ padding: "20px 0", fontSize: "18px" }}>
                   <h2>
                     <span>Create your account</span>
