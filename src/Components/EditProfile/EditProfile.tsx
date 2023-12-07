@@ -139,7 +139,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                       overflow: "hidden",
                       top: "-70px",
                       left: "40px",
-                      backgroundColor: "red",
+                      backgroundColor: "grey",
                     }}
                   >
                     <img
