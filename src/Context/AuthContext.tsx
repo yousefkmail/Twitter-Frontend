@@ -38,8 +38,13 @@ export const AuthContextProvider = ({ children }: any) => {
 
   const FetchUser = async (user: string) => {
     const result = await GetUser(user);
-    const data = await result.json();
-    setCurrentUser(data.user);
+    if (result.ok) {
+      const data = await result.json();
+      setCurrentUser(data.user);
+    } else {
+      setUser("");
+      localStorage.clear();
+    }
     setUserLoaded(true);
   };
 

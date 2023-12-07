@@ -50,6 +50,7 @@ export const TweetsContextProvider = ({ children }: any) => {
   async function handleScroll(this: Window) {
     // console.log(this.scrollY);
     // console.log(document.body.scroll);
+    scrollPosition.current = this.window.scrollY;
 
     if (isLoading) return;
 
@@ -65,7 +66,6 @@ export const TweetsContextProvider = ({ children }: any) => {
 
       const json = await value.json();
       currentPage += 1;
-      scrollPosition.current = this.window.scrollY;
       dispatch({ type: "ADD_TWEETS", payload: json.tweets });
       isLoading = false;
     }
