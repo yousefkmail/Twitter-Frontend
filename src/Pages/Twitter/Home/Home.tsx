@@ -44,7 +44,14 @@ const Home = () => {
       RightPartition={
         <>
           <SearchBar />
-          <Trends />
+          <div
+            style={{
+              backgroundColor: "var(--secondary-background-color)",
+              borderRadius: "10px",
+            }}
+          >
+            <Trends />
+          </div>
           <WhoToFollow RecAccounts={RecAccounts} />
         </>
       }

@@ -24,7 +24,9 @@ const Trend = ({ title, tweetCount }: TrendProps) => {
   return (
     <div onClick={handleClick} className={style["trend-container"]}>
       <div>{title}</div>
-      <div>{tweetCount}</div>
+      <div
+        style={{ color: "rgb(128,128,128)", fontSize: "14px" }}
+      >{`${tweetCount} posts`}</div>
       <div
         style={{
           position: "absolute",
