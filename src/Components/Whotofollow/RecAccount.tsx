@@ -22,16 +22,29 @@ const RecAccount = ({ _id, icon, name }: RecommendedAccountType) => {
       style={{
         display: "flex",
         padding: "10px ",
+        paddingLeft: "15px",
         justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "40px", marginRight: "7px" }}>
+      <div style={{ display: "flex", flexShrink: "1", flexGrow: "1" }}>
+        <div
+          style={{
+            width: "50px",
+            height: "50px",
+          }}
+        >
           <Icon iconsrc={icon} />
         </div>
-        <span> {name}</span>
+        <div style={{ flexGrow: "1", flexShrink: "1" }}>
+          <span style={{ paddingLeft: "10px" }}> {name}</span>
+          {/* <span style={{ color: "grey", overflow: "hidden" }}>
+            {" "}
+            {`@${_id}`}
+          </span> */}
+        </div>
       </div>
-      <button onClick={handleClick}>
+      <button style={{ flexShrink: "0" }} onClick={handleClick}>
         {isFollowing ? t("UnFollowLabel") : t("FollowLabel")}
       </button>
     </div>
