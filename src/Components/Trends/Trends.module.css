@@ -3,6 +3,7 @@
   cursor: pointer;
   transition: all ease-in-out 0.2s;
   position: relative;
+  padding-left: 15px;
 }
 
 .trend-container:hover {

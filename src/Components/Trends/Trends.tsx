@@ -12,18 +12,23 @@ const Trends = () => {
   return (
     <div
       style={{
-        marginTop: "40px",
-        paddingTop: "7px",
-        paddingLeft: "7px",
         borderRadius: "10px",
-        backgroundColor: "var(--secondary-background-color)",
       }}
     >
       <ComponentLoader
         Condition={Trends.length > 0}
         Component={
           <div>
-            <h3>{t("TrendsLabel")}</h3>
+            <h3
+              style={{
+                paddingLeft: "15px",
+                color: "rgb(233,233,233)",
+                fontSize: "20px",
+                fontWeight: "700",
+              }}
+            >
+              {t("TrendsLabel")}
+            </h3>
             {Trends.map((item: TrendProps, index) => (
               <Trend key={index} {...item} />
             ))}

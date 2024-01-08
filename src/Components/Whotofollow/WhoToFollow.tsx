@@ -14,7 +14,9 @@ const WhoToFollow = ({ RecAccounts }: WhoToFollowProps) => {
       Condition={RecAccounts.length > 0}
       Component={
         <div className={style["container"]}>
-          <span> {t("recAccountsLabel")}</span>
+          <h3 style={{ paddingLeft: "15px", fontWeight: "700" }}>
+            {t("recAccountsLabel")}
+          </h3>
           {RecAccounts.map((item, index) => (
             <RecAccount key={index} {...item} />
           ))}
