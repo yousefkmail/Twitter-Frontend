@@ -7,7 +7,6 @@ import TweetSettings from "./TweetSettings";
 import { useDeleteTweet } from "../../Hooks/index";
 import ScreenLoader from "../ScreenLoader/ScreenLoader";
 import { faHeart, faComment } from "@fortawesome/free-regular-svg-icons";
-import { useNavigate } from "react-router-dom";
 import {
   faRetweet,
   faChartSimple,
@@ -15,7 +14,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useApi } from "../../Hooks/index";
 import NewPostArea from "../NewPostArea/NewPostArea";
-import { useAuthContext } from "../../Hooks/index";
 const Tweet = ({
   Images,
   contentText,
@@ -32,8 +30,6 @@ const Tweet = ({
   const [isLikedState, setIsLiked] = useState(isLiked);
   const [loading, setisloading] = useState(false);
   const [iscommenting, setIsCommenting] = useState(false);
-  const navigate = useNavigate();
-  const { currentUser } = useAuthContext();
 
   const [loaded, setIsLoaded] = useState(false);
 
