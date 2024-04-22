@@ -1,3 +1,5 @@
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser } from "@fortawesome/free-regular-svg-icons";
 interface iconprops {
   iconsrc: string;
 }
@@ -10,9 +12,9 @@ const Icon = ({ iconsrc }: iconprops) => {
           height: "100%",
           borderRadius: "999px",
           objectFit: "cover",
+          color: "red",
         }}
         src={iconsrc}
-        alt=""
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RecommendedAccountType } from "../../Types/RecommendedAccountsType";
-import Icon from "../Icon/Icon";
+import { Icon } from "../../Components";
 import { useApi } from "../../Hooks/index";
 import { useTranslation } from "react-i18next";
 
@@ -44,7 +44,14 @@ const RecAccount = ({ _id, icon, name }: RecommendedAccountType) => {
           </span> */}
         </div>
       </div>
-      <button style={{ flexShrink: "0" }} onClick={handleClick}>
+      <button
+        style={{
+          flexShrink: "0",
+          background: "var(--color-white)",
+          color: "var(--color-black)",
+        }}
+        onClick={handleClick}
+      >
         {isFollowing ? t("UnFollowLabel") : t("FollowLabel")}
       </button>
     </div>

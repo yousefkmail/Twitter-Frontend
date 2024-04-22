@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TweetModel } from "../../Types/TweetModel";
 import style from "./Tweet.module.css";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TweetSettings from "./TweetSettings";
 import { useDeleteTweet } from "../../Hooks/index";
 import ScreenLoader from "../ScreenLoader/ScreenLoader";
@@ -13,7 +13,6 @@ import {
   faChartSimple,
   faHeart as FillHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { usePopup } from "../../Hooks/index";
 import { useApi } from "../../Hooks/index";
 import NewPostArea from "../NewPostArea/NewPostArea";
 import { useAuthContext } from "../../Hooks/index";
@@ -27,8 +26,9 @@ const Tweet = ({
   isLiked,
 }: TweetModel) => {
   const { OnSubmit, isLoading } = useDeleteTweet(_id);
+  const modal = useRef<HTMLDialogElement | null>(null);
   const { LikePost, unLikePost } = useApi();
-  const { Show, Popup } = usePopup();
+  // const { Show, Popup } = usePopup();
   const [isLikedState, setIsLiked] = useState(isLiked);
   const [loading, setisloading] = useState(false);
   const [iscommenting, setIsCommenting] = useState(false);
@@ -99,122 +99,153 @@ const Tweet = ({
 
   return (
     <div
-      onClick={() =>
-        navigate({
-          pathname: `/${currentUser._id}/${_id}`,
-        })
-      }
       className={style["container"]}
-      style={{ opacity: loaded ? "1" : "0" }}
+      style={{ opacity: loaded ? "1" : "0", padding: "10px" }}
     >
-      {publisher.icon && (
-        <img className={style["publisher-icon"]} src={publisher.icon} />
-      )}
-      <div style={{ flexGrow: "1" }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>
-            <span style={{ marginRight: "20px" }}>{publisher.name}</span>
-            {/* <span>{`@${publisher.id}`}</span> */}
-            <span> {getDateStamp()}</span>
-          </div>
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ position: "relative" }}
-          >
-            <div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  ShowSettings();
-                }}
-              >
-                <FontAwesomeIcon icon={faEllipsis} />
-              </button>
-            </div>
-            {showSettings && (
-              <TweetSettings
-                DeleteTweet={deleteTweet}
-                CloseWindow={() => HideSettings()}
-              />
-            )}
-          </div>
-        </div>
-        <div>{contentText}</div>
-        {Images.length > 0 && (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gridTemplateRows: "300px min-content",
-              border: "1px solid rgba(255,255,255,0.3)",
-              borderRadius: "10px",
-              justifyItems: "stretch",
-              overflow: "hidden",
-            }}
-          >
-            {Images.map((item, index) => (
-              <img
-                onLoad={() => {
-                  setIsLoaded(true);
-                }}
-                loading="lazy"
-                style={{
-                  overflow: "hidden",
-                  width: "100%",
-                  height: "100%",
-                  // height: "100%",
-                  objectFit: "cover",
-                }}
-                key={index}
-                src={item}
-                alt=""
-              />
-            ))}
-          </div>
-        )}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "7px ",
+      <dialog ref={modal}>
+        <div>{"Functionality not implemented yet"}</div>
+        <button
+          onClick={() => {
+            modal.current?.close();
           }}
         >
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsCommenting(true);
+          close
+        </button>
+      </dialog>
+      {/* <div
+        onClick={() =>
+          navigate({
+            pathname: `/${currentUser._id}/${_id}`,
+          })
+        }
+        style={{ position: "absolute" }}
+      ></div> */}
+      <div style={{ display: "flex" }}>
+        <div
+          style={{ flexBasis: "40px", flexShrink: "0", marginRight: "10px" }}
+        >
+          {publisher.icon && (
+            <img className={style["publisher-icon"]} src={publisher.icon} />
+          )}
+        </div>
+        <div style={{ flexGrow: "1" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <span style={{ marginRight: "20px" }}>{publisher.name}</span>
+              {/* <span>{`@${publisher.id}`}</span> */}
+              <span> {getDateStamp()}</span>
+            </div>
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{ position: "relative" }}
+            >
+              <div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    ShowSettings();
+                  }}
+                >
+                  <FontAwesomeIcon icon={faEllipsis} />
+                </button>
+              </div>
+              {showSettings && (
+                <TweetSettings
+                  DeleteTweet={deleteTweet}
+                  CloseWindow={() => HideSettings()}
+                />
+              )}
+            </div>
+          </div>
+          <div>{contentText}</div>
+          {Images.length > 0 && (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gridTemplateRows: "300px min-content",
+                border: "1px solid rgba(255,255,255,0.3)",
+                borderRadius: "10px",
+                justifyItems: "stretch",
+                overflow: "hidden",
+              }}
+            >
+              {Images.map((item, index) => (
+                <img
+                  onLoad={() => {
+                    setIsLoaded(true);
+                  }}
+                  loading="lazy"
+                  style={{
+                    overflow: "hidden",
+                    width: "100%",
+                    height: "100%",
+                    // height: "100%",
+                    objectFit: "cover",
+                  }}
+                  key={index}
+                  src={item}
+                  alt=""
+                />
+              ))}
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "7px ",
             }}
           >
-            <FontAwesomeIcon icon={faComment} />
-          </button>
-          <button
-            onClick={(e) => {
-              HandleLikePressed();
-              e.stopPropagation();
-            }}
-          >
-            <FontAwesomeIcon icon={isLikedState ? FillHeart : faHeart} />
-            {likesCount}
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              Show("Functionality not implemented yet");
-            }}
-          >
-            <FontAwesomeIcon icon={faRetweet} />
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              Show("Functionality not implemented yet");
-            }}
-          >
-            <FontAwesomeIcon icon={faChartSimple} />
-          </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsCommenting(true);
+              }}
+            >
+              <FontAwesomeIcon
+                style={{ marginRight: "5px" }}
+                icon={faComment}
+              />
+            </button>
+            <button
+              onClick={(e) => {
+                HandleLikePressed();
+                e.stopPropagation();
+              }}
+            >
+              <FontAwesomeIcon
+                style={{ marginRight: "5px" }}
+                icon={isLikedState ? FillHeart : faHeart}
+              />
+
+              {likesCount}
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                modal.current?.showModal();
+              }}
+            >
+              <FontAwesomeIcon
+                style={{ marginRight: "5px" }}
+                icon={faRetweet}
+              />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                modal.current?.showModal();
+              }}
+            >
+              <FontAwesomeIcon
+                style={{ marginRight: "5px" }}
+                icon={faChartSimple}
+              />
+            </button>
+          </div>
         </div>
       </div>
-      <Popup />
       {isLoading && <ScreenLoader />}
       {iscommenting && (
         <div
