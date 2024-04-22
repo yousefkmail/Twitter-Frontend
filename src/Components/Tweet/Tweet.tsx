@@ -32,8 +32,6 @@ const Tweet = ({
   const [isLikedState, setIsLiked] = useState(isLiked);
   const [loading, setisloading] = useState(false);
   const [iscommenting, setIsCommenting] = useState(false);
-  const navigate = useNavigate();
-  const { currentUser } = useAuthContext();
 
   const [loaded, setIsLoaded] = useState(false);
 
