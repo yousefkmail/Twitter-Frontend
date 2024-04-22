@@ -37,20 +37,26 @@ const NewPostArea = ({ superTweet }: newPostAreaProps) => {
   const { currentUser } = useAuthContext();
   return (
     <div
+      className={style["container"]}
       onClick={(e) => {
         e.stopPropagation();
       }}
-      style={{
-        display: "flex",
-        width: "100%",
-        borderTop: "1px solid rgba(255,255,255,0.3)",
-        borderBottom: "1px solid rgba(255,255,255,0.3)",
-        backgroundColor: "var(--background-color)",
-      }}
     >
-      <div style={{ width: "60px" }}>
+      <div
+        style={{
+          width: "60px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+        }}
+      >
         <img
-          style={{ width: "70%", objectFit: "cover", borderRadius: "9999px" }}
+          style={{
+            width: "70%",
+            objectFit: "cover",
+            borderRadius: "9999px",
+            marginTop: "17px",
+          }}
           src={currentUser.icon}
           alt=""
         />
@@ -95,6 +101,7 @@ const NewPostArea = ({ superTweet }: newPostAreaProps) => {
               display: "flex",
               justifyContent: "space-between",
               transition: "all ease-in-out 0.3s",
+              borderTop: "var(--main-border)",
             }}
           >
             <input

@@ -46,7 +46,7 @@ const Home = () => {
           <SearchBar />
           <div
             style={{
-              backgroundColor: "var(--secondary-background-color)",
+              border: "var(--main-border)",
               borderRadius: "10px",
             }}
           >

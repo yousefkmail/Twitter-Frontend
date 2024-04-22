@@ -10,9 +10,8 @@
   cursor: pointer;
 }
 .publisher-icon {
-  width: 30px;
+  width: 100%;
   aspect-ratio: 1/1;
   object-fit: contain;
-  margin: 10px;
   border-radius: 9999px;
 }

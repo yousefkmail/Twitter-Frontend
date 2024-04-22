@@ -1,5 +1,6 @@
 .container {
   width: 100%;
   margin-top: 20px;
-  background-color: var(--secondary-background-color);
+  border: var(--main-border);
+  border-radius: 7px;
 }
