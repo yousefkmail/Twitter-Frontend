@@ -157,7 +157,6 @@ const Tweet = ({
           {Images.length > 0 && (
             <div
               style={{
-                display: "grid",
                 gridTemplateColumns: "1fr 1fr",
                 gridTemplateRows: "300px min-content",
                 border: "1px solid rgba(255,255,255,0.3)",
