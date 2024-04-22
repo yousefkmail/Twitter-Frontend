@@ -4,7 +4,7 @@ import style from "./Tweet.module.css";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
 import TweetSettings from "./TweetSettings";
-import { useDeleteTweet } from "../../Hooks/index";
+import { useAuthContext, useDeleteTweet } from "../../Hooks/index";
 import ScreenLoader from "../ScreenLoader/ScreenLoader";
 import { faHeart, faComment } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -14,6 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useApi } from "../../Hooks/index";
 import NewPostArea from "../NewPostArea/NewPostArea";
+import { useNavigate } from "react-router-dom";
 const Tweet = ({
   Images,
   contentText,
@@ -30,9 +31,9 @@ const Tweet = ({
   const [isLikedState, setIsLiked] = useState(isLiked);
   const [loading, setisloading] = useState(false);
   const [iscommenting, setIsCommenting] = useState(false);
-
+  const navigate = useNavigate();
   const [loaded, setIsLoaded] = useState(false);
-
+  const { currentUser } = useAuthContext();
   const HandleLikePressed = async () => {
     if (loading) return;
     setisloading(true);
@@ -108,15 +109,15 @@ const Tweet = ({
           close
         </button>
       </dialog>
-      {/* <div
+
+      <div
         onClick={() =>
           navigate({
             pathname: `/${currentUser._id}/${_id}`,
           })
         }
-        style={{ position: "absolute" }}
-      ></div> */}
-      <div style={{ display: "flex" }}>
+        style={{ display: "flex" }}
+      >
         <div
           style={{ flexBasis: "40px", flexShrink: "0", marginRight: "10px" }}
         >
