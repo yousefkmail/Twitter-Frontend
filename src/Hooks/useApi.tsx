@@ -3,7 +3,7 @@ const url = import.meta.env.VITE_API_URL;
 export const useApi = (Url?: string) => {
   // const ApiUrl = Url ?? "https://charming-figolla-19a92e.netlify.app";
   const ApiUrl = Url ?? url;
-  const { user } = useAuthContext();
+  const { user, currentUser } = useAuthContext();
   const headers = { "Content-Type": "Application/json", token: user ?? "" };
   const getTweets = async (
     page: number,
@@ -81,18 +81,18 @@ export const useApi = (Url?: string) => {
     return result;
   };
 
-  const GetFollowing = async () => {
-    const result = await fetch(`${ApiUrl}/api/relationship/followings`, {
+  const GetFollowing = async (id = currentUser._id) => {
+    const result = await fetch(`${ApiUrl}/api/relationship/followings/${id}`, {
       method: "GET",
-      headers: { token: user },
+      headers: { token: user, id },
     });
     return await result.json();
   };
 
-  const GetFollowers = async () => {
-    const result = await fetch(`${ApiUrl}/api/relationship/followers`, {
+  const GetFollowers = async (id = currentUser._id) => {
+    const result = await fetch(`${ApiUrl}/api/relationship/followers/${id}`, {
       method: "GET",
-      headers: { token: user },
+      headers: { token: user, id },
     });
     return await result.json();
   };
@@ -127,7 +127,7 @@ export const useApi = (Url?: string) => {
       headers: { token: user, "Content-Type": "Application/json" },
     });
 
-    return result;
+    return await result.json();
   };
 
   const GetCurrentUser = async (user: string) => {

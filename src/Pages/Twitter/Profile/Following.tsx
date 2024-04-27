@@ -6,24 +6,23 @@ import {
   Trends,
   UserPreviewCollection,
 } from "../../../Components";
-import {
-  UseRecommendedAccountsContext,
-  useApi,
-  useAuthContext,
-} from "../../../Hooks";
+import { UseRecommendedAccountsContext, useApi } from "../../../Hooks";
+import { useParams } from "react-router-dom";
+import { user } from "../../../Types/user";
 const Following: FunctionComponent = () => {
   const { RecAccounts } = UseRecommendedAccountsContext();
-  const { currentUser } = useAuthContext();
-  const { GetFollowing } = useApi();
-
+  const { id } = useParams();
+  const { GetFollowing, GetUser } = useApi();
+  const [user, setUser] = useState<user>();
   const [following, setFollowing] = useState();
   useEffect(() => {
     FetchData();
   }, []);
 
   async function FetchData() {
-    const data = await GetFollowing();
-    console.log(data);
+    const data = await GetFollowing(id);
+    const user = await GetUser(id ?? "");
+    setUser(user.user);
     setFollowing(data.users);
   }
 
@@ -40,8 +39,8 @@ const Following: FunctionComponent = () => {
           <div style={{ display: "flex" }}>
             <Back />
             <div>
-              <div>{currentUser.name}</div>
-              <div>{`@${currentUser._id}`}</div>
+              <div>{user?.name}</div>
+              <div>{`@${user?._id}`}</div>
             </div>
           </div>
 
