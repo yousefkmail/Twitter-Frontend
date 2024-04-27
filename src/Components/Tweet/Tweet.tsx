@@ -122,7 +122,14 @@ const Tweet = ({
           style={{ flexBasis: "40px", flexShrink: "0", marginRight: "10px" }}
         >
           {publisher.icon && (
-            <img className={style["publisher-icon"]} src={publisher.icon} />
+            <img
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate({ pathname: `/profile/${publisher.id}` });
+              }}
+              className={style["publisher-icon"]}
+              src={publisher.icon}
+            />
           )}
         </div>
         <div style={{ flexGrow: "1" }}>

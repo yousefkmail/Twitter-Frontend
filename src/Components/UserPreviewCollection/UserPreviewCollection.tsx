@@ -1,24 +1,24 @@
 import style from "./WhoToFollow.module.css";
-import { RecommendedAccountType } from "../../Types/RecommendedAccountsType";
-import RecAccount from "./RecAccount";
+import { UserPreviewProps } from "../../Types/UserPreviewProps";
+import UserPreview from "../UserPreview/UserPreview";
 import ComponentLoader from "../ComponentLoader/ComponentLoad";
 import { useTranslation } from "react-i18next";
-interface WhoToFollowProps {
-  RecAccounts: RecommendedAccountType[];
+interface UserPreviewCollectionProps {
+  Users: UserPreviewProps[] | undefined;
 }
 
-const WhoToFollow = ({ RecAccounts }: WhoToFollowProps) => {
+const UserPreviewCollection = ({ Users }: UserPreviewCollectionProps) => {
   const { t } = useTranslation();
   return (
     <ComponentLoader
-      Condition={RecAccounts.length > 0}
+      Condition={Users !== undefined}
       Component={
         <div className={style["container"]}>
           <h3 style={{ paddingLeft: "15px", fontWeight: "700" }}>
             {t("recAccountsLabel")}
           </h3>
-          {RecAccounts.map((item, index) => (
-            <RecAccount key={index} {...item} />
+          {Users?.map((item, index) => (
+            <UserPreview key={index} {...item} />
           ))}
         </div>
       }
@@ -26,4 +26,4 @@ const WhoToFollow = ({ RecAccounts }: WhoToFollowProps) => {
   );
 };
 
-export default WhoToFollow;
+export default UserPreviewCollection;

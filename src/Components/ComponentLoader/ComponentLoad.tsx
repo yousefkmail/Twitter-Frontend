@@ -17,13 +17,15 @@ const ComponentLoader = ({
         Loader ? (
           <Loader />
         ) : (
-          <TailSpin
-            height={100}
-            width={100}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            visible={true}
-          />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <TailSpin
+              height={100}
+              width={100}
+              color="#4fa94d"
+              ariaLabel="ball-triangle-loading"
+              visible={true}
+            />
+          </div>
         )
       ) : (
         Component

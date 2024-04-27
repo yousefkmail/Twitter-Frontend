@@ -2,7 +2,7 @@ import {
   Tweet,
   SearchBar,
   Trends,
-  WhoToFollow,
+  UserPreviewCollection,
 } from "../../../Components/index";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -68,7 +68,7 @@ const TweetPage = () => {
       <div style={{ width: "40%", marginLeft: "60px" }}>
         <SearchBar />
         <Trends />
-        <WhoToFollow RecAccounts={RecAccounts} />
+        <UserPreviewCollection Users={RecAccounts} />
       </div>
     </div>
   );

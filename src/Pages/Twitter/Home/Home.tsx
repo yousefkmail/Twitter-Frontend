@@ -3,7 +3,7 @@ import {
   NewPostArea,
   Trends,
   SearchBar,
-  WhoToFollow,
+  UserPreviewCollection,
   DefaultPageDesign,
   Tweets,
 } from "../../../Components/index";
@@ -44,15 +44,8 @@ const Home = () => {
       RightPartition={
         <>
           <SearchBar />
-          <div
-            style={{
-              border: "var(--main-border)",
-              borderRadius: "10px",
-            }}
-          >
-            <Trends />
-          </div>
-          <WhoToFollow RecAccounts={RecAccounts} />
+          <Trends />
+          <UserPreviewCollection Users={RecAccounts} />
         </>
       }
     />

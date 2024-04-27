@@ -5,8 +5,18 @@ export const useApi = (Url?: string) => {
   const ApiUrl = Url ?? url;
   const { user } = useAuthContext();
   const headers = { "Content-Type": "Application/json", token: user ?? "" };
-  const getTweets = async (page: number, pageSize: number) => {
-    const result = await fetch(`${ApiUrl}/api/tweet/get/${page}/${pageSize}`, {
+  const getTweets = async (
+    page: number,
+    pageSize: number,
+    tweeterId: string
+  ) => {
+    let mystring = "";
+    if (tweeterId) {
+      mystring = `${ApiUrl}/api/tweet/get/${page}/${pageSize}?tweeterId=${tweeterId}`;
+    } else {
+      mystring = `${ApiUrl}/api/tweet/get/${page}/${pageSize}`;
+    }
+    const result = await fetch(mystring, {
       method: "GET",
       headers: headers,
     });
@@ -111,7 +121,16 @@ export const useApi = (Url?: string) => {
     return result;
   };
 
-  const GetUser = async (user: string) => {
+  const GetUser = async (userID: string) => {
+    const result = await fetch(`${ApiUrl}/api/user/get/${userID}`, {
+      method: "GET",
+      headers: { token: user, "Content-Type": "Application/json" },
+    });
+
+    return result;
+  };
+
+  const GetCurrentUser = async (user: string) => {
     const result = await fetch(`${ApiUrl}/api/user/current`, {
       method: "GET",
       headers: { token: user, "Content-Type": "Application/json" },
@@ -162,8 +181,9 @@ export const useApi = (Url?: string) => {
     GetTrends,
     FollowAccount,
     GetRecAccounts,
-    GetUser,
+    GetCurrentUser,
     EditProfile,
+    GetUser,
     DeleteTweet,
     LikePost,
     getUserTweets,

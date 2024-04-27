@@ -23,6 +23,10 @@
   --main-border: 1px solid rgba(47, 51, 54, 1);
   background-color: var(--background-color);
 }
+
+html {
+  overflow-y: scroll;
+}
 body {
   margin: 0;
 }

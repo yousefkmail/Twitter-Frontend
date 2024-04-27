@@ -1,5 +1,5 @@
 import style from "./Sidebar.module.css";
-import { useLogout } from "../../Hooks/index";
+import { useAuthContext, useLogout } from "../../Hooks/index";
 import { NavLink } from "../../Components/index";
 import {
   faHouse,
@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 const Sidebar = () => {
   const { logout } = useLogout();
   const { i18n, t } = useTranslation();
+  const { currentUser } = useAuthContext();
   return (
     <div className={style["nav-container"]}>
       <FontAwesomeIcon
@@ -48,7 +49,7 @@ const Sidebar = () => {
       <NavLink icon={faUserGroup} to={"/communities"}>
         {t("CommunitiesNavButton")}
       </NavLink>
-      <NavLink icon={faUser} to={"/profile"}>
+      <NavLink icon={faUser} to={"/profile/" + currentUser._id}>
         {t("ProfileNavButton")}
       </NavLink>
       <button onClick={logout}>{t("LogOutLabel")}</button>

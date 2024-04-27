@@ -20,7 +20,7 @@ export const authContext = createContext({} as contextinterface);
 export const AuthContextProvider = ({ children }: any) => {
   const [userLoaded, setUserLoaded] = useState(false);
   const [user, setUser] = useState("");
-  const { GetUser } = useApi();
+  const { GetCurrentUser } = useApi();
   const [currentUser, setCurrentUser] = useState<user>({} as user);
   useEffect(() => {
     const localstorageitem = localStorage.getItem("user");
@@ -37,7 +37,7 @@ export const AuthContextProvider = ({ children }: any) => {
   }, [user]);
 
   const FetchUser = async (user: string) => {
-    const result = await GetUser(user);
+    const result = await GetCurrentUser(user);
     if (result.ok) {
       const data = await result.json();
       setCurrentUser(data.user);
