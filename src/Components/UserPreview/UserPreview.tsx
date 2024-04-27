@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { UserPreviewProps } from "../../Types/UserPreviewProps";
 import { Icon } from "..";
 import { useApi } from "../../Hooks/index";

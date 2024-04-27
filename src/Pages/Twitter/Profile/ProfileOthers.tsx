@@ -9,11 +9,7 @@ import {
 import { user } from "../../../Types/user";
 import { Link, Outlet } from "react-router-dom";
 import ProfileNavLink from "./ProfileNavLink";
-import {
-  UseRecommendedAccountsContext,
-  useApi,
-  useAuthContext,
-} from "../../../Hooks";
+import { UseRecommendedAccountsContext, useApi } from "../../../Hooks";
 
 interface ProfileOthersProps {
   user?: user;
@@ -25,7 +21,6 @@ const ProfileOthers: FunctionComponent<ProfileOthersProps> = ({ user }) => {
   const { RecAccounts } = UseRecommendedAccountsContext();
   const [tweets, setTweets] = useState<[]>([]);
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
-  const { currentUser } = useAuthContext();
   const { FollowAccount } = useApi();
 
   const HandleFollow = async () => {

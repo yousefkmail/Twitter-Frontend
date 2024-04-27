@@ -61,7 +61,7 @@ export const TweetsContextProvider = ({ children }: any) => {
     ) {
       isLoading = true;
 
-      const value = await getTweets(currentPage, 10);
+      const value = await getTweets(currentPage, 10, "");
       if (!value.ok) return;
 
       const json = await value.json();
@@ -84,7 +84,7 @@ export const TweetsContextProvider = ({ children }: any) => {
   }, [user]);
 
   const FetchTweets = async () => {
-    const value = await getTweets(0, 10);
+    const value = await getTweets(0, 10, "");
     const json = await value.json();
     currentPage = 1;
     dispatch({ type: "SET_TWEET", payload: json.tweets });
