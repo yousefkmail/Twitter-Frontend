@@ -124,12 +124,15 @@ const ProfileOthers: FunctionComponent<ProfileOthersProps> = ({ user }) => {
               <div>
                 <Link
                   style={{ marginRight: "20px", color: "white" }}
-                  to={"/profile/following"}
+                  to={`/profile/${user._id}/following`}
                 >
                   {user?.followingCount + " Following"}
                 </Link>
 
-                <Link style={{ color: "white" }} to={"/profile/followers"}>
+                <Link
+                  style={{ color: "white" }}
+                  to={`/profile/${user._id}/followers`}
+                >
                   {user?.followerCount + " Followers"}
                 </Link>
               </div>

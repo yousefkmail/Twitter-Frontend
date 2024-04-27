@@ -20,7 +20,7 @@ const Profile = () => {
 
   async function FetchUser() {
     const result = await GetUser(id ?? "");
-    setUser((await result.json()).user);
+    setUser(result.user);
   }
 
   return id === currentUser._id ? (
