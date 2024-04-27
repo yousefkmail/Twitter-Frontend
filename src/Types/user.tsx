@@ -5,6 +5,6 @@ export interface user {
   createdAt: string;
   _id: string;
   coverImage: string;
-  following: [];
-  followers: [];
+  followerCount: number;
+  followingCount: number;
 }

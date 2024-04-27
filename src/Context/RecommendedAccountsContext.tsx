@@ -1,9 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { RecommendedAccountType } from "../Types/RecommendedAccountsType";
 import { useAuthContext } from "../Hooks/index";
 import { useApi } from "../Hooks/index";
+import { ExtendedUserPreviewProps } from "../Components/UserPreview/ExtendedUserPreview";
 interface RecAccountsType {
-  RecAccounts: RecommendedAccountType[];
+  RecAccounts: ExtendedUserPreviewProps[] | undefined;
 }
 
 export const RecAccountsContext = createContext<RecAccountsType>({
@@ -12,8 +12,8 @@ export const RecAccountsContext = createContext<RecAccountsType>({
 export const RecAccountsContextProvider = ({ children }: any) => {
   const { GetRecAccounts } = useApi();
   const [RecAccounts, setRecommendedAccounts] = useState<
-    RecommendedAccountType[]
-  >([]);
+    ExtendedUserPreviewProps[] | undefined
+  >();
 
   const { user } = useAuthContext();
 
