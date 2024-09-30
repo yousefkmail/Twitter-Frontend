@@ -2,7 +2,7 @@ import { useAuthContext } from "../../Hooks/index";
 import { useEditProfile } from "../../Hooks/index";
 import { ComponentLoader } from "../../Components/index";
 import { useEffect, useRef, useState } from "react";
-import { faCamera, faX } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cancel from "../Buttons/Cancel/Cancel";
 interface EditProfileProps {
