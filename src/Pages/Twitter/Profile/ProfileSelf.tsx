@@ -112,6 +112,7 @@ const ProfileSelf: FunctionComponent<ProfileSelfProps> = () => {
                 marginRight: "20px",
                 border: "1px solid rgba(255,255,255,0.2)",
                 borderRadius: "9999px",
+                color:"white"
               }}
               onClick={OpenEditProfile}
             >

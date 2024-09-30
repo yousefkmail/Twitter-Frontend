@@ -1,8 +1,7 @@
 import style from "./LoginPopup.module.css";
 import { useLogin } from "../../../Hooks/index";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX } from "@fortawesome/free-solid-svg-icons";
 import { Error } from "../../../Components";
+import Cancel from "../../../Components/Buttons/Cancel/Cancel";
 interface LoginPopupProps {
   CloseWindow: () => void;
 }
@@ -13,9 +12,7 @@ const LoginPopup = ({ CloseWindow }: LoginPopupProps) => {
   return (
     <div className={style["container"]}>
       <div className={style["inner-container"]}>
-        <button style={{ borderRadius: "999px" }} onClick={CloseWindow}>
-          <FontAwesomeIcon color="white" icon={faX} />
-        </button>
+      <Cancel onClick={CloseWindow} ></Cancel>
         <div>
           <form
             style={{

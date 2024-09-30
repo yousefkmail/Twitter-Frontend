@@ -52,9 +52,9 @@ const Sidebar = () => {
       <NavLink icon={faUser} to={"/profile/" + currentUser._id}>
         {t("ProfileNavButton")}
       </NavLink>
-      <button onClick={logout}>{t("LogOutLabel")}</button>
-      <button onClick={() => i18n.changeLanguage("en")}>English</button>
-      <button onClick={() => i18n.changeLanguage("ar")}>Arabic</button>
+      <button style={{color:"white"}} onClick={logout}>{t("LogOutLabel")}</button>
+      <button style={{color:"white"}} onClick={() => i18n.changeLanguage("en")}>English</button>
+      <button style={{color:"white"}} onClick={() => i18n.changeLanguage("ar")}>Arabic</button>
     </div>
   );
 };

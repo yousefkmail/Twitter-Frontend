@@ -4,6 +4,7 @@ import { ComponentLoader } from "../../Components/index";
 import { useEffect, useRef, useState } from "react";
 import { faCamera, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Cancel from "../Buttons/Cancel/Cancel";
 interface EditProfileProps {
   CloseWindow: () => void;
 }
@@ -72,9 +73,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                     padding: "10px",
                   }}
                 >
-                  <button onClick={CloseWindow}>
-                    <FontAwesomeIcon icon={faX} />
-                  </button>
+                  <Cancel onClick={CloseWindow}></Cancel>
                   {/* <input type="submit" value={"Save "} /> */}
                   <button
                     style={{

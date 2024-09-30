@@ -1,9 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX } from "@fortawesome/free-solid-svg-icons";
 import style from "./SignupPopup.module.css";
 import { useSignup } from "../../../Hooks/index";
 import Error from "../../../Components/error/Error";
 import ComponentLoader from "../../../Components/ComponentLoader/ComponentLoad";
+import Cancel from "../../../Components/Buttons/Cancel/Cancel";
 interface LoginPopupProps {
   CloseWindow: () => void;
 }
@@ -45,9 +44,7 @@ const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
           Component={
             <div>
               <div style={{ display: "flex" }}>
-                <button style={{ borderRadius: "999px" }} onClick={CloseWindow}>
-                  <FontAwesomeIcon color="white" icon={faX} />
-                </button>
+                <Cancel onClick={CloseWindow} ></Cancel>
               </div>
               <div style={{ padding: "0px min(80px, 10%)" }}>
                 <div style={{ padding: "20px 0", fontSize: "18px" }}>
