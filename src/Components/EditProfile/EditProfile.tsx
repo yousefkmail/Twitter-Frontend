@@ -109,6 +109,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                     style={{
                       position: "absolute",
                       zIndex: "10",
+                      color:"white",
                       top: "50%",
                       backgroundColor: "transparent",
                       left: "50%",
@@ -157,6 +158,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                         position: "absolute",
                         top: "50%",
                         left: "50%",
+                        
                         backgroundColor: "transparent",
                         transform: "translate(-50%,-50%)",
                       }}
@@ -175,7 +177,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                     />
                   </div>
                 </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: "flex", justifyContent: "center"  }}>
                   <input
                     placeholder="Name"
                     style={{
@@ -184,6 +186,7 @@ const EditProfile = ({ CloseWindow }: EditProfileProps) => {
                       backgroundColor: "black",
                       outline: "none",
                       border: "1px solid white",
+                      color:"white"
                     }}
                     autoComplete="off"
                     {...register("name")}

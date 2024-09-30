@@ -21,3 +21,4 @@ export { default as ExtendedUserPreview } from "./UserPreview/ExtendedUserPrevie
 export { default as ExtendedUserPreviewCollection } from "./UserPreviewCollection/ExtendedUserPreviewCollection";
 export { default as DefaultPageDesign } from "./defaultPageDesign/DefaultPageDesign";
 export { default as Error } from "./error/Error";
+export { default as Cancel } from "./Buttons/Cancel/Cancel";
