@@ -14,7 +14,7 @@ const LoginPopup = ({ CloseWindow }: LoginPopupProps) => {
     <div className={style["container"]}>
       <div className={style["inner-container"]}>
         <button style={{ borderRadius: "999px" }} onClick={CloseWindow}>
-          <FontAwesomeIcon icon={faX} />
+          <FontAwesomeIcon color="white" icon={faX} />
         </button>
         <div>
           <form

@@ -25,6 +25,7 @@
   padding-inline: 0;
   padding-block: 0;
   background-color: black;
+  color: white;
 }
 
 @media (max-width: 600px) {

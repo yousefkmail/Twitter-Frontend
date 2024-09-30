@@ -46,7 +46,7 @@ const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
             <div>
               <div style={{ display: "flex" }}>
                 <button style={{ borderRadius: "999px" }} onClick={CloseWindow}>
-                  <FontAwesomeIcon icon={faX} />
+                  <FontAwesomeIcon color="white" icon={faX} />
                 </button>
               </div>
               <div style={{ padding: "0px min(80px, 10%)" }}>
@@ -141,8 +141,8 @@ const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
                         </select>
                       </div>
                     </div>
-                    <div style={{ flexGrow: "1" }}>
-                      <button>Next</button>
+                    <div style={{ flexGrow: "1"  }}>
+                      <button style={{backgroundColor:"white"}}>Next</button>
                     </div>
                   </form>
                 </div>
