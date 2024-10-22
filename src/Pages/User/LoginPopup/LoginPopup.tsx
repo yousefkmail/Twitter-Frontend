@@ -1,7 +1,7 @@
 import style from "./LoginPopup.module.css";
 import { useLogin } from "../../../Hooks/index";
-import { Error } from "../../../Components";
 import Cancel from "../../../Components/Buttons/Cancel/Cancel";
+import {TextInputField} from "../../../Components";
 interface LoginPopupProps {
   CloseWindow: () => void;
 }
@@ -20,25 +20,10 @@ const LoginPopup = ({ CloseWindow }: LoginPopupProps) => {
               flexDirection: "column",
               alignItems: "center",
             }}
-            action=""
             onSubmit={OnSubmit}
           >
-            <input
-              {...register("email", { required: "Field is required" })}
-              className={style["input-field"]}
-              type="email"
-              placeholder="Email"
-            />
-            <Error content={errors.email?.message} />
-
-            <input
-              {...register("password", { required: "Field is required" })}
-              className={style["input-field"]}
-              type="password"
-              placeholder="password"
-            />
-            <Error content={errors.password?.message} />
-
+            <TextInputField {...register("email", { required: "Field is required" })} type="email" placeholder="Email" ErrorContent={errors.email?.message}  />
+            <TextInputField {...register("password", { required: "Field is required" })} type="text"  placeholder="Password" ErrorContent={errors.password?.message}  />
             <button className={style["submit-button"]} type="submit">
               Log in
             </button>

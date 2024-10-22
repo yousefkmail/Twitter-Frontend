@@ -22,3 +22,4 @@ export { default as ExtendedUserPreviewCollection } from "./UserPreviewCollectio
 export { default as DefaultPageDesign } from "./defaultPageDesign/DefaultPageDesign";
 export { default as Error } from "./error/Error";
 export { default as Cancel } from "./Buttons/Cancel/Cancel";
+export { default as TextInputField } from "./InputFields/TextInputField/TextInputField";

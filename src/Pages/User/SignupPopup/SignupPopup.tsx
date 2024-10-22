@@ -1,8 +1,8 @@
 import style from "./SignupPopup.module.css";
 import { useSignup } from "../../../Hooks/index";
-import Error from "../../../Components/error/Error";
 import ComponentLoader from "../../../Components/ComponentLoader/ComponentLoad";
 import Cancel from "../../../Components/Buttons/Cancel/Cancel";
+import { TextInputField } from "../../../Components";
 interface LoginPopupProps {
   CloseWindow: () => void;
 }
@@ -55,39 +55,9 @@ const SingupPopup = ({ CloseWindow }: LoginPopupProps) => {
                 <div>
                   <form onSubmit={OnSubmit} action="">
                     <div>
-                      <div>
-                        <input
-                          className={style["input-field"]}
-                          {...register("name", {
-                            required: "Field is required",
-                          })}
-                          placeholder="Name"
-                          type="text"
-                        />
-                        <Error content={errors.name?.message} />
-                      </div>
-                      <div>
-                        <input
-                          className={style["input-field"]}
-                          {...register("email", {
-                            required: "Field is required",
-                          })}
-                          placeholder="Email"
-                          type="email"
-                        />
-                        <Error content={errors.email?.message} />
-                      </div>
-                      <div>
-                        <input
-                          className={style["input-field"]}
-                          {...register("password", {
-                            required: "Field is required",
-                          })}
-                          placeholder="Password"
-                          type="text"
-                        />
-                        <Error content={errors.password?.message} />
-                      </div>
+                        <TextInputField {...register("name", { required: "Field is required" })} type="text" placeholder="Name" ErrorContent={errors.name?.message}  />
+                        <TextInputField {...register("email", { required: "Field is required" })} type="Email" placeholder="Email" ErrorContent={errors.email?.message}  />
+                        <TextInputField {...register("password", { required: "Field is required" })} type="password" placeholder="Password" ErrorContent={errors.password?.message}  />
                       <h4>Date of birth</h4>
                       <p>
                         This will not be shown publicly. Confirm your own age,

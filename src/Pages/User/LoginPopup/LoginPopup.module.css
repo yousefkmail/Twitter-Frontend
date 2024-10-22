@@ -14,19 +14,6 @@
   place-items: center;
 }
 
-.input-field {
-  border: 1px solid rgba(255, 255, 255, 0.321);
-  width: min(100% - 20px, 400px);
-  height: 30px;
-  margin: 15px 0 0 0;
-  outline: none;
-  padding-inline: 0;
-  padding-block: 0;
-  background-color: black;
-  border-radius: 7px;
-  color: white;
-  padding: 24px;
-}
 
 .submit-button {
   border: 1px solid rgba(255, 255, 255, 0.261);
